@@ -52,9 +52,9 @@ export function CursorGlow() {
   if (!enabled) return null;
 
   const sizes = {
-    default: { size: 520, opacity: 0.32, blur: 90 },
-    hover: { size: 600, opacity: 0.45, blur: 90 },
-    focus: { size: 280, opacity: 0.6, blur: 50 },
+    default: { size: 90, opacity: 0.22, blur: 18 },
+    hover: { size: 130, opacity: 0.3, blur: 22 },
+    focus: { size: 70, opacity: 0.38, blur: 14 },
   };
   const s = sizes[variant];
 
@@ -69,7 +69,7 @@ export function CursorGlow() {
         opacity: visible ? s.opacity : 0,
         filter: `blur(${s.blur}px)`,
         background:
-          "radial-gradient(circle, #3B82F6 0%, rgba(59,130,246,0.6) 40%, transparent 70%)",
+          "radial-gradient(circle, #3B82F6 0%, rgba(59,130,246,0.5) 45%, transparent 75%)",
       }}
     />
   );
