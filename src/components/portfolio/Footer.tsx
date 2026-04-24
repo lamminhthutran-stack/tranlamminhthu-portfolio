@@ -1,36 +1,40 @@
+import { ArrowUpRight, ArrowUp } from "lucide-react";
+
 export function Footer() {
   return (
     <footer id="contact" className="relative pt-32 pb-12 border-t border-border overflow-hidden">
       <div
-        className="pointer-events-none absolute -bottom-60 left-1/2 -translate-x-1/2 w-[1100px] h-[700px] rounded-full blur-3xl opacity-25"
+        className="pointer-events-none absolute -bottom-80 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] rounded-full blur-3xl opacity-30"
         style={{ background: "radial-gradient(circle, var(--accent), transparent 60%)" }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="reveal">
-          <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">
-            ✺ Contact
+          <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-6">
+            ✺ Contact / Let's talk
           </div>
-          <h2 className="text-[clamp(2.5rem,8vw,8rem)] leading-[0.95] tracking-[-0.04em] font-semibold">
+          <h2 className="text-[clamp(2.75rem,11vw,11rem)] leading-[0.9] tracking-[-0.045em] font-semibold">
             <span className="text-gradient">Let's build something</span>
             <br />
             <span className="italic font-light text-accent-gradient">meaningful.</span>
           </h2>
         </div>
 
-        <div className="reveal mt-12 flex flex-wrap items-center gap-4">
+        <div className="reveal mt-12 flex flex-wrap items-center gap-3">
           <a
             href="mailto:hello@example.com"
-            className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-4 rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all"
+            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-medium transition-all ring-glow"
+            style={{ backgroundColor: "var(--accent)", color: "var(--accent-foreground)" }}
           >
             Start a conversation
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
           <a
             href="#top"
-            className="inline-flex items-center gap-3 border border-border px-7 py-4 rounded-full text-sm font-medium hover:bg-surface transition-colors"
+            className="inline-flex items-center gap-2 border border-border px-6 py-3.5 rounded-full text-sm font-medium hover:border-accent hover:text-accent transition-colors"
           >
-            Back to top ↑
+            Back to top
+            <ArrowUp className="h-4 w-4" />
           </a>
         </div>
 
@@ -46,12 +50,12 @@ export function Footer() {
             <div className="flex gap-5">
               <a href="#" className="text-foreground hover:text-accent transition-colors">LinkedIn</a>
               <a href="#" className="text-foreground hover:text-accent transition-colors">GitHub</a>
-              <a href="#" className="text-foreground hover:text-accent transition-colors">X</a>
+              <a href="#" className="text-foreground hover:text-accent transition-colors">Resume</a>
             </div>
           </div>
           <div className="md:text-right">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">© 2026</div>
-            <div>Designed & built with intent.</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">© 2026 — Minh</div>
+            <div>Designed &amp; built with intent.</div>
           </div>
         </div>
       </div>
