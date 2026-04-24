@@ -1,26 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/portfolio/Nav";
+import { Hero } from "@/components/portfolio/Hero";
+import { Work } from "@/components/portfolio/Work";
+import { About } from "@/components/portfolio/About";
+import { Skills } from "@/components/portfolio/Skills";
+import { Footer } from "@/components/portfolio/Footer";
+import { useReveal } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Portfolio — Building systems, workflows & ideas that scale" },
+      {
+        name: "description",
+        content:
+          "Personal portfolio of a young builder focused on product, operations, automation, and strategic problem solving.",
+      },
+      { property: "og:title", content: "Portfolio — Systems, Workflows & Ideas that Scale" },
+      {
+        property: "og:description",
+        content:
+          "Turning messy problems into structured execution through product thinking, operations, and automation.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
+  useReveal();
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="dark min-h-screen bg-background text-foreground antialiased grain">
+      <Nav />
+      <main>
+        <Hero />
+        <Work />
+        <About />
+        <Skills />
+      </main>
+      <Footer />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
