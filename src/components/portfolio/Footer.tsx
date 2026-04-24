@@ -42,23 +42,21 @@ export function Footer() {
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">Email</div>
             <a className="text-foreground hover:text-accent transition-colors" href="mailto:hello@example.com">
-              hello@example.com
+              lamminhthutran@gmail.com
             </a>
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">Elsewhere</div>
             <div className="flex gap-5">
-              <a href="#" className="text-foreground hover:text-accent transition-colors">LinkedIn</a>
-              <a href="#" className="text-foreground hover:text-accent transition-colors">GitHub</a>
-              <a href="#" className="text-foreground hover:text-accent transition-colors">Resume</a>
+              <a href="https://www.linkedin.com/in/haileythutran/" className="text-foreground hover:text-accent transition-colors">LinkedIn</a>
             </div>
           </div>
           <div className="md:text-right">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">© 2026 — Minh</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">© 2026 — Minh Thư</div>
             <div>Designed &amp; built with intent.</div>
           </div>
         </div>
       </div>
     </footer>
-  );
+  )
 }

@@ -5,8 +5,7 @@ export function Nav() {
   const links = [
     { label: "Work", href: "#work" },
     { label: "Info", href: "#about" },
-    { label: "Resume", href: "#" },
-    { label: "LinkedIn", href: "#" },
+
   ];
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/40">
