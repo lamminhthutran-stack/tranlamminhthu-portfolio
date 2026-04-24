@@ -1,3 +1,8 @@
+export type ProjectContentSection = {
+    title: string;
+    body: string | string[]; // string for paragraph, array for bullets
+};
+
 export type Project = {
     id: string;
     n: string;
@@ -7,7 +12,7 @@ export type Project = {
     year?: string;
     metric: string;
     gradient: string;
-    content: string; // The content for the project sub-page
+    content: string | ProjectContentSection[]; // The content for the project sub-page
     video?: string; // Optional video URL or path
 };
 
@@ -21,7 +26,66 @@ export const projects: Project[] = [
         year: "2026",
         metric: "↓ 3 hrs / week",
         gradient: "linear-gradient(135deg, oklch(0.5 0.2 255), oklch(0.18 0.06 270))",
-        content: "Full case study coming soon... This newsletter aggregates daily AI insights, categorizes them using LLMs, and synthesizes them into actionable summaries for quick consumption.",
+        content: [
+            {
+                title: "Overview",
+                body: "Built an automated daily newsletter that aggregates business, finance, economy, and technology news from multiple sources, runs each story through AI analysis, and delivers a structured HTML digest to my inbox every morning. The workflow runs on n8n, combining RSS feeds, NewsAPI, VNExpress, Claude via OpenRouter, and Gmail into a single end-to-end pipeline."
+            },
+            {
+                title: "Problem",
+                body: "Keeping up with business news manually was slow and shallow — headlines without context, no clear \"so what.\" I wanted a system that could turn scattered daily information into concise, decision-oriented insights for market awareness, business learning, and strategic thinking."
+            },
+            {
+                title: "Solution",
+                body: "Designed a fully automated pipeline that runs every morning at 7AM, pulls from multiple news sources, filters and classifies content by category, sends it to Claude for structured analysis, formats the output into an HTML email, and delivers it through Gmail — with no manual input required."
+            },
+            {
+                title: "My Role",
+                body: "Designed the full workflow logic, prompt structure, content classification framework, HTML email template, and automation flow in n8n from scratch."
+            },
+            {
+                title: "Workflow",
+                body: [
+                    "Trigger — Schedule node fires at 7AM daily",
+                    "Data collection — Fetches news from NewsAPI, RSS feeds, VNExpress, and ZenQuotes",
+                    "Data processing — JavaScript code node cleans, classifies, and limits news items by category",
+                    "AI analysis — Claude generates structured insights using a fixed four-lens framework",
+                    "HTML formatting — Output is cleaned and converted into email-ready HTML",
+                    "Delivery — Gmail sends the final digest to selected recipients"
+                ]
+            },
+            {
+                title: "Analysis Framework",
+                body: [
+                    "Summary — What happened and who is involved",
+                    "Why it matters — The business, market, or economic significance",
+                    "Forward outlook — What may unfold over the next 3–12 months",
+                    "Actionable learning — Key takeaways for a founder, PM, investor, or student"
+                ]
+            },
+            {
+                title: "Key Features",
+                body: [
+                    "Multi-source news aggregation with fallback rules to avoid gaps in key categories",
+                    "AI-generated \"so what\" analysis structured around a fixed decision framework",
+                    "Content classified across finance, economy, business, and technology",
+                    "Clean HTML email template with clear visual hierarchy",
+                    "Fully automated daily scheduling — zero manual input"
+                ]
+            },
+            {
+                title: "Stack",
+                body: "n8n · NewsAPI · RSS Feed · VNExpress RSS · ZenQuotes API · Claude Sonnet via OpenRouter · JavaScript · Gmail"
+            },
+            {
+                title: "Outcome",
+                body: "A repeatable personal intelligence system that eliminates manual news scanning and converts daily information into structured strategic insights. The project demonstrates workflow design, API integration, prompt engineering, automation logic, and business-oriented information synthesis."
+            },
+            {
+                title: "What I Learned",
+                body: "The most important design decision wasn't the automation itself — it was building a reliable analysis framework. Without a fixed structure, AI output tends to summarize without adding value. The four-lens framework forced the model to go beyond headlines and explain market relevance, future implications, and practical lessons from every story."
+            }
+        ],
         video: "/demo-video.mp4", // Replace with your actual video filename
     },
     {

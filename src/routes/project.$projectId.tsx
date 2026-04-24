@@ -108,19 +108,34 @@ function ProjectDetail() {
                     </div>
                 )}
 
-                <div className="max-w-3xl ml-auto md:mr-24 text-lg md:text-xl text-muted-foreground leading-relaxed space-y-8 reveal">
-                    <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6">
-                        Overview
-                    </div>
-                    <p>
-                        {project.content}
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                <div className="max-w-3xl ml-auto md:mr-24 text-lg md:text-xl text-muted-foreground leading-relaxed space-y-12 reveal pb-20">
+                    {typeof project.content === 'string' ? (
+                        <>
+                            <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6">
+                                Overview
+                            </div>
+                            <p>
+                                {project.content}
+                            </p>
+                        </>
+                    ) : (
+                        project.content.map((section, idx) => (
+                            <div key={idx} className="space-y-4">
+                                <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6">
+                                    {section.title}
+                                </div>
+                                {Array.isArray(section.body) ? (
+                                    <ul className="list-disc pl-6 space-y-2">
+                                        {section.body.map((item, i) => (
+                                            <li key={i}>{item}</li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p className="whitespace-pre-wrap">{section.body}</p>
+                                )}
+                            </div>
+                        ))
+                    )}
                 </div>
             </main>
         </div>
