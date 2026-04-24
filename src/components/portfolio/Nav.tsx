@@ -13,8 +13,8 @@ export function Nav() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
         <a href="#top" className="font-mono text-sm tracking-tight flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-blink" />
-          <span className="text-foreground">Minh</span>
-          <span className="text-muted-foreground hidden sm:inline">— Product / Ops</span>
+          <span className="text-foreground">Minh Thư (Hailey)</span>
+          <span className="text-muted-foreground hidden sm:inline">— Operations</span>
         </a>
         <nav className="hidden md:flex items-center gap-1 text-sm">
           {links.map((l) => (

@@ -26,26 +26,25 @@ export function Hero() {
         {/* Top label: name + role */}
         <div className="reveal flex flex-wrap items-center gap-x-4 gap-y-2 mb-10">
           <span className="font-mono text-xs uppercase tracking-[0.22em] text-accent">
-            ● Minh
+            ● Minh Thư
           </span>
           <span className="h-px w-8 bg-border" />
           <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-            Product / Ops / Automation Builder
+            Operations/ Automation Builder
           </span>
         </div>
 
-        <h1 className="reveal text-[clamp(3rem,10vw,11rem)] leading-[0.9] tracking-[-0.045em] font-semibold">
-          <span className="text-gradient">I craft workflows,</span>
-          <br />
-          <span className="text-gradient">systems</span>{" "}
-          <span className="italic font-light text-muted-foreground">&amp;</span>{" "}
-          <span className="text-accent-gradient italic font-light">stories.</span>
+        <h1 className="reveal text-[clamp(2.5rem,6vw,7.5rem)] leading-[1.05] md:leading-[0.95] tracking-[-0.04em] font-semibold">
+          <span className="text-gradient block md:whitespace-nowrap">I solve operational bottlenecks,</span>
+          <span className="block mt-3 md:mt-5 lg:mt-6">
+            <span className="text-gradient">by building</span>{" "}
+            <span className="text-accent-gradient italic font-light">scalable products.</span>
+          </span>
         </h1>
 
         <div className="reveal mt-12 grid md:grid-cols-12 gap-8 items-end">
-          <p className="md:col-span-6 md:col-start-7 text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
-            I turn messy problems into structured execution through product
-            thinking, operations, and automation.
+          <p className="md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            Ops-minded problem solver with product thinking — turning messy workflows into systems that improve speed, clarity, and execution.
           </p>
         </div>
 

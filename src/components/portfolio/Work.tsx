@@ -4,38 +4,37 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
   {
     n: "01",
-    title: "AI Daily M&A Report",
-    impact: "Saved analysts hours every week with auto-curated market briefings.",
-    tags: ["Automation", "AI", "Finance"],
-    year: "2025",
-    metric: "↓ 8 hrs / week",
+    title: "AI Daily Newsletter",
+    impact: "Saved hours every week with auto-curated market briefings.",
+    tags: ["Automation", "Personal Project"],
+    year: "2026",
+    metric: "↓ 3 hrs / week",
     gradient: "linear-gradient(135deg, oklch(0.5 0.2 255), oklch(0.18 0.06 270))",
   },
   {
     n: "02",
-    title: "Project X Comms System",
-    impact: "Automated communication for 100+ applicants across multiple cohorts.",
-    tags: ["Operations", "Systems"],
-    year: "2025",
-    metric: "100+ applicants",
+    title: "Project X Workflow System",
+    impact: "Automated communication for 700+ applicants across multiple cohorts.",
+    tags: ["Automation", "Marketing Campaign", "Communication"],
+    year: "2025 - 2026",
+    metric: "700+ applicants",
     gradient: "linear-gradient(135deg, oklch(0.45 0.18 240), oklch(0.16 0.05 260))",
   },
   {
     n: "03",
-    title: "Fraud Prevention Strategy",
+    title: "Dashboards for Data Visualization",
     impact: "Reduced repetitive manual review tasks and lowered platform risk.",
-    tags: ["Strategy", "Risk"],
-    year: "2024",
-    metric: "↓ Manual tasks",
+    tags: ["Data Visualization", "Personal Project"],
+    metric: "Faster decisions with live dashboards",
     gradient: "linear-gradient(135deg, oklch(0.4 0.17 270), oklch(0.16 0.05 250))",
   },
   {
     n: "04",
-    title: "Growth & Ops Execution",
-    impact: "Shipped cross-functional initiatives across product, growth & partnerships.",
-    tags: ["Growth", "Product"],
-    year: "2024",
-    metric: "Cross-functional",
+    title: "Partner Reporting Automation System",
+    impact: "Built an automated Apps Script workflow that generated partner-facing sheets and reduced repetitive manual reporting work.",
+    tags: ["Automation", "Operations", "Apps Script"],
+    year: "2026",
+    metric: "↓ 4 hrs / week",
     gradient: "linear-gradient(135deg, oklch(0.46 0.18 248), oklch(0.18 0.06 268))",
   },
 ];
@@ -50,9 +49,9 @@ export function Work() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 reveal">
           <div>
             <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-4">
-              ⌗ Selected Work / 2024 — 25
+              ⌗ Selected Work / 2024 — 2026
             </div>
-            <h2 className="text-4xl md:text-6xl tracking-[-0.035em] font-semibold max-w-3xl">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-[-0.035em] font-semibold max-w-none md:whitespace-nowrap">
               <span className="text-gradient">A few projects built</span>{" "}
               <span className="italic font-light text-muted-foreground">
                 for real leverage.
@@ -105,7 +104,7 @@ export function Work() {
                   </div>
 
                   {/* Title + impact */}
-                  <div className="col-span-10 md:col-span-6" data-cursor="focus">
+                  <div className="col-span-10 md:col-span-7" data-cursor="focus">
                     <h3 className="text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] font-medium leading-[1.05] transition-colors duration-300 group-hover:text-accent">
                       {p.title}
                     </h3>
@@ -119,7 +118,7 @@ export function Work() {
                   </div>
 
                   {/* Tags */}
-                  <div className="hidden md:flex col-span-3 flex-wrap gap-2 items-start pt-3">
+                  <div className="hidden md:flex md:col-span-2 flex-wrap gap-2 justify-end lg:justify-start items-start pt-3">
                     {p.tags.map((t) => (
                       <span
                         key={t}

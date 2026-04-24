@@ -6,50 +6,57 @@ export function About() {
           <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-4">
             ✦ Info
           </div>
-          <div
-            className="aspect-[4/5] rounded-2xl border border-border relative overflow-hidden"
-            style={{
-              background:
-                "radial-gradient(circle at 30% 20%, oklch(0.45 0.18 255 / 0.6), transparent 55%), linear-gradient(160deg, oklch(0.22 0.05 260), oklch(0.14 0.02 265))",
-            }}
-          >
-            <div className="absolute inset-0 grain opacity-30" />
-            <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
+          <div className="aspect-[4/5] rounded-2xl border border-border relative overflow-hidden bg-black/20 group">
+            {/* Find your photo, put it in the "public" folder, and rename it to "photo.jpg" */}
+            <img
+              src="/photo.jpg"
+              alt="Profile"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+            />
+            {/* Gradient overlay so the white text is always readable over the photo */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
+
+            <div className="absolute inset-0 grain opacity-30 mix-blend-overlay" />
+
+            <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80">
                 ID — 2026
               </div>
-              <span className="h-2 w-2 rounded-full bg-accent animate-blink" />
+              <span className="h-2 w-2 rounded-full bg-accent animate-blink shadow-[0_0_8px_var(--accent)]" />
             </div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
+            <div className="absolute bottom-6 left-6 right-6 z-10">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">
                 Operator · Builder
               </div>
-              <div className="mt-1 text-2xl font-medium text-white">Minh</div>
-              <div className="text-sm text-white/70">Yonsei · Int'l Commerce</div>
+              <div className="mt-1 text-2xl font-medium text-white drop-shadow-md">Trần Lâm Minh Thư</div>
+              <div className="text-sm text-white/80 drop-shadow-md">Yonsei · International Commerce · Applied Information Engineering</div>
             </div>
           </div>
         </div>
-
         <div className="md:col-span-7 reveal">
           <h2 className="text-3xl md:text-5xl tracking-[-0.03em] font-medium leading-[1.05]">
             <span className="text-gradient">
-              I design workflows, solve operational bottlenecks, and build scalable ideas
+              I design workflows, solve operational bottlenecks, and build scalable systems
             </span>{" "}
             <span className="text-muted-foreground italic font-light">
-              — turning ambiguity into clear, executable systems.
+              — turning ambiguity into clear, executable processes.
             </span>
           </h2>
 
           <div className="mt-12 grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
             <p>
-              I'm an International Commerce student at Yonsei University with a
-              strong interest in operations, strategy, and systems building. My
-              work sits at the intersection of <span className="text-accent">product</span> and execution.
+              Operations-oriented undergraduate with experience in workflow design,
+              automation, and operational problem solving. Currently studying
+              International Commerce and Applied Information Engineering at{" "}
+              <span className="text-accent">Yonsei University</span>, with a strong
+              interest in systems, execution, and continuous improvement.
             </p>
+
             <p>
-              I'm energized by messy, ambiguous problems — and translating them
-              into <span className="text-accent">automation</span>, structured
-              workflows, and measurable outcomes for teams that need to move fast.
+              Known for a strong can-do attitude and ownership beyond scope, I proactively
+              identify opportunities to improve and scale processes. I combine attention
+              to detail with system thinking to turn messy challenges into structured
+              workflows, faster execution, and measurable outcomes.
             </p>
           </div>
 
