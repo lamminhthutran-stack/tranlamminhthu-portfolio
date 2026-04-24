@@ -5,6 +5,7 @@ import { Work } from "@/components/portfolio/Work";
 import { About } from "@/components/portfolio/About";
 import { Skills } from "@/components/portfolio/Skills";
 import { Footer } from "@/components/portfolio/Footer";
+import { CursorGlow } from "@/components/portfolio/CursorGlow";
 import { useReveal } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/")({
@@ -31,6 +32,7 @@ function Index() {
   useReveal();
   return (
     <div className="dark min-h-screen bg-background text-foreground antialiased grain">
+      <CursorGlow />
       <Nav />
       <main>
         <Hero />
