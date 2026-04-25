@@ -1,6 +1,9 @@
 export type ProjectContentSection = {
     title: string;
-    body: string | string[]; // string for paragraph, array for bullets
+    body?: string | string[]; // string for paragraph, array for bullets
+    video?: string;
+    demoUrl?: string;
+    fileDownload?: { url: string; label: string };
 };
 
 export type Project = {
@@ -14,6 +17,7 @@ export type Project = {
     gradient: string;
     content: string | ProjectContentSection[]; // The content for the project sub-page
     video?: string; // Optional video URL or path
+    demoUrl?: string; // Optional PowerBI/iframe demo URL
 };
 
 export const projects: Project[] = [
@@ -107,7 +111,182 @@ export const projects: Project[] = [
         tags: ["Data Visualization", "Personal Project"],
         metric: "Faster decisions with live dashboards",
         gradient: "linear-gradient(135deg, oklch(0.4 0.17 270), oklch(0.16 0.05 250))",
-        content: "Full case study coming soon... Through dynamic query generation and unified charts, this platform transforms fragmented spreadsheets into rich visual narratives.",
+        content: [
+            {
+                title: "1st Dashboard: Adidas Sales Performance",
+                body: "Watch the video demo of our first dashboard below.",
+                video: "/vid.mov"
+            },
+            {
+                title: "Overview",
+                body: "Built an interactive **Power BI sales performance dashboard** analyzing Adidas retail partner performance across revenue, profit, margin, units sold, geography, product lines, and seasonality. Designed to help stakeholders quickly identify top-performing channels, markets, and growth opportunities through self-serve analytics."
+            },
+            {
+                title: "Problem",
+                body: "Raw sales data across multiple retailers, cities, states, and product categories was fragmented and difficult to interpret. Decision-makers needed a faster way to monitor KPIs, compare partner performance, and drill into trends without manual spreadsheet analysis."
+            },
+            {
+                title: "Solution",
+                body: "Developed a centralized dashboard with dynamic filters and visual storytelling to transform transactional sales data into actionable business insights. Enabled users to slice performance by retailer, location, and date range in real time."
+            },
+            {
+                title: "My Role",
+                body: [
+                    "Cleaned and modeled raw sales data for reporting",
+                    "Designed dashboard layout and KPI framework",
+                    "Built DAX measures for business metrics",
+                    "Created interactive filters, slicers, and drill-down visuals",
+                    "Structured insights for executive-level decision making",
+                    "Optimized usability and presentation for portfolio/demo use"
+                ]
+            },
+            {
+                title: "Workflow",
+                body: [
+                    "Imported and cleaned raw sales dataset",
+                    "Built data model and relationships in Power BI",
+                    "Defined core KPIs (Revenue, Profit, Margin, Units Sold)",
+                    "Designed visuals for trend, geography, retailer share, product mix",
+                    "Added slicers for retailer, city, and date range",
+                    "Tested interactivity and refined dashboard UX"
+                ]
+            },
+            {
+                title: "Key Features",
+                body: [
+                    "KPI Cards: Total Revenue, Profit, Margin, Units Sold",
+                    "Revenue trend by quarter",
+                    "Retailer performance comparison",
+                    "Revenue by state / geographic analysis",
+                    "Revenue share donut chart by retailer",
+                    "Revenue vs Profit by product line",
+                    "Dynamic filtering by retailer, city, and date",
+                    "Interactive cross-filtering between visuals"
+                ]
+            },
+            {
+                title: "Stack",
+                body: [
+                    "Power BI",
+                    "DAX",
+                    "Power Query",
+                    "Excel / CSV Data Source",
+                    "Data Visualization & Dashboard Design"
+                ]
+            },
+            {
+                title: "Outcome",
+                body: [
+                    "Converted raw sales data into an executive-ready analytics tool",
+                    "Reduced time to identify top retailers and markets",
+                    "Improved visibility into profitability by category",
+                    "Demonstrated strong business intelligence + storytelling skills",
+                    "Created a portfolio-ready interactive dashboard project"
+                ]
+            },
+            {
+                title: "What I Learned",
+                body: [
+                    "How to structure dashboards around business questions, not just charts",
+                    "Translating raw data into clear KPIs and decisions",
+                    "Designing dashboards for usability and stakeholder needs",
+                    "Using filters/interactions to empower self-serve analysis",
+                    "Balancing analytical depth with clean visual communication"
+                ]
+            },
+            {
+                title: "2nd Dashboard: PepsiCo Performance",
+                body: "Interactive Pepsico Dashboard demo.",
+                video: "/vid1.mov",
+                fileDownload: {
+                    url: "/Pepsico_Dashboard.xlsx",
+                    label: "Download Pepsico_Dashboard.xlsx"
+                }
+            },
+            {
+                title: "Overview",
+                body: "Built an interactive Excel Sales Performance Dashboard for PepsiCo to track revenue, profitability, product performance, retailer contribution, and geographic sales trends. Designed for business stakeholders to monitor KPIs and make faster commercial decisions through one centralized reporting view."
+            },
+            {
+                title: "Problem",
+                body: "Sales data across multiple retailers, brands, states, and time periods was scattered in raw spreadsheets, making it difficult to quickly identify top performers, revenue drivers, and profit opportunities. Manual reporting was time-consuming and lacked clear visualization."
+            },
+            {
+                title: "Solution",
+                body: "Created a dynamic Excel dashboard that transforms raw transactional data into actionable insights using pivot tables, slicers, KPI cards, charts, and automated calculations. Users can filter by retailer and time period to explore performance instantly."
+            },
+            {
+                title: "My Role",
+                body: [
+                    "Cleaned and structured raw sales data",
+                    "Built Excel data model using Pivot Tables",
+                    "Designed executive dashboard layout and UI",
+                    "Created KPI logic for revenue, profit, margin, and units sold",
+                    "Added interactive slicers for retailer and date filtering",
+                    "Developed charts to visualize trends, geography, and brand mix",
+                    "Optimized dashboard for presentation and portfolio use"
+                ]
+            },
+            {
+                title: "Workflow",
+                body: [
+                    "Imported and organized raw sales dataset",
+                    "Standardized fields (date, retailer, brand, revenue, profit, units)",
+                    "Created Pivot Tables for metric aggregation",
+                    "Built KPI summary cards",
+                    "Designed charts for retailer, trend, geography, and margin analysis",
+                    "Added slicers for dynamic filtering",
+                    "Refined dashboard formatting and user experience"
+                ]
+            },
+            {
+                title: "Key Features",
+                body: [
+                    "KPI Cards: Total Revenue, Operating Profit, Margin, Units Sold",
+                    "Best Product by Revenue",
+                    "Best Performing Retailer",
+                    "Revenue by Retailer comparison",
+                    "Profit by Retailer over time",
+                    "Revenue by State (US Map Visualization)",
+                    "Revenue Trend by month/year",
+                    "Revenue Share by Brand (Pie Chart)",
+                    "Top 5 Brands by Margin",
+                    "Interactive slicers for Retailer & Invoice Date"
+                ]
+            },
+            {
+                title: "Stack",
+                body: [
+                    "Microsoft Excel",
+                    "Pivot Tables",
+                    "Pivot Charts",
+                    "Slicers / Timeline Filters",
+                    "Advanced Formulas",
+                    "Dashboard Design & Data Storytelling"
+                ]
+            },
+            {
+                title: "Outcome",
+                body: [
+                    "Converted raw spreadsheet data into an executive-ready dashboard",
+                    "Reduced time needed for monthly sales reporting",
+                    "Improved visibility into retailer and brand performance",
+                    "Enabled faster identification of growth opportunities and low-margin areas",
+                    "Demonstrated strong analytics + dashboarding capability using Excel"
+                ]
+            },
+            {
+                title: "What I Learned",
+                body: [
+                    "How to turn spreadsheets into decision-making tools",
+                    "Structuring dashboards around business questions, not just visuals",
+                    "Building interactive reports with Pivot Tables and slicers",
+                    "Designing clean, stakeholder-friendly dashboards",
+                    "Balancing analytical depth with usability and presentation quality"
+                ]
+            }
+        ],
+        demoUrl: "https://app.powerbi.com/reportEmbed?reportId=6c360436-cc00-44c2-a011-6b6c772c3cc1&autoAuth=true&embeddedDemo=true",
     },
     {
         id: "partner-reporting",

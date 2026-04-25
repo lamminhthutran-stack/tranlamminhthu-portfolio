@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/portfolio/Nav";
 import { CursorGlow } from "@/components/portfolio/CursorGlow";
 import { projects } from "@/data/projects";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/project/$projectId")({
@@ -79,7 +79,17 @@ function ProjectDetail() {
                 </header>
 
                 {/* Feature/Hero Image or Video mockup for the project */}
-                {project.video ? (
+                {project.demoUrl ? (
+                    <div className="w-full rounded-2xl md:rounded-3xl border border-border mb-24 relative overflow-hidden reveal shadow-2xl bg-card" style={{ aspectRatio: '1140 / 541.25' }}>
+                        <iframe
+                            title="Interactive Demo"
+                            className="w-full h-full absolute inset-0"
+                            src={project.demoUrl}
+                            frameBorder="0"
+                            allowFullScreen={true}>
+                        </iframe>
+                    </div>
+                ) : project.video ? (
                     <div className="aspect-video w-full rounded-2xl md:rounded-3xl border border-border mb-24 relative overflow-hidden reveal shadow-2xl bg-black">
                         <video
                             src={project.video}
@@ -130,8 +140,42 @@ function ProjectDetail() {
                                             <li key={i}>{item}</li>
                                         ))}
                                     </ul>
-                                ) : (
+                                ) : section.body ? (
                                     <p className="whitespace-pre-wrap">{section.body}</p>
+                                ) : null}
+
+                                {section.fileDownload && (
+                                    <div className="mt-6 mb-8">
+                                        <a
+                                            href={section.fileDownload.url}
+                                            download
+                                            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg border border-border"
+                                        >
+                                            <Download className="w-4 h-4" />
+                                            {section.fileDownload.label}
+                                        </a>
+                                    </div>
+                                )}
+
+                                {section.demoUrl && (
+                                    <div className="w-full rounded-2xl border border-border mt-8 relative overflow-hidden shadow-xl bg-card" style={{ aspectRatio: '1140 / 541.25' }}>
+                                        <iframe
+                                            title={section.title}
+                                            className="w-full h-full absolute inset-0"
+                                            src={section.demoUrl}
+                                            frameBorder="0"
+                                            allowFullScreen={true}>
+                                        </iframe>
+                                    </div>
+                                )}
+                                {section.video && (
+                                    <div className="aspect-video w-full rounded-2xl border border-border mt-8 relative overflow-hidden shadow-xl bg-black">
+                                        <video
+                                            src={section.video}
+                                            controls
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
                                 )}
                             </div>
                         ))
