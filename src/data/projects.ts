@@ -58,7 +58,7 @@ export const projects: Project[] = [
                 ]
             }
         ],
-        video: "/daily_news_vid.mov",
+        video: "/daily_news_vid.mp4",
     },
     {
         id: "partner-reporting",
