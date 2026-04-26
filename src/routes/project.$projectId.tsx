@@ -94,7 +94,10 @@ function ProjectDetail() {
                         <div className="aspect-video w-full rounded border border-border mb-24 relative overflow-hidden reveal shadow-2xl bg-black">
                             <video
                                 src={project.video}
-                                controls
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -180,7 +183,10 @@ function ProjectDetail() {
                                             <div className="aspect-video w-full rounded-2xl border border-border mt-8 relative overflow-hidden shadow-xl bg-black">
                                                 <video
                                                     src={section.video}
-                                                    controls
+                                                    autoPlay
+                                                    loop
+                                                    muted
+                                                    playsInline
                                                     className="w-full h-full object-cover"
                                                 />
                                             </div>
