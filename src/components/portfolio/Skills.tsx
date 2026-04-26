@@ -1,15 +1,15 @@
 const skills = [
-  { name: "Product Thinking", desc: "Framing problems, defining outcomes, prioritizing what matters." },
+  { name: "Attention to Detail", desc: "Catching what others miss. Designing systems where nothing falls through the cracks." },
+  { name: "System Thinking", desc: "Seeing bottlenecks before they happen. Designing for scale, not just the immediate fix." },
+  { name: "Operations", desc: "Running programs, comms, and logistics without dropping the ball." },
   { name: "Workflow Design", desc: "Mapping ops end-to-end into clean, repeatable systems." },
-  { name: "Automation", desc: "Removing manual toil with AI and lightweight scripting." },
-  { name: "Operations", desc: "Running programs, comms, and logistics at scale." },
-  { name: "Business Strategy", desc: "Connecting decisions to leverage, growth and risk." },
-  { name: "Data Thinking", desc: "Turning signals into structured insight and action." },
+  { name: "Automation", desc: "Removing manual toil with n8n, webhooks, and AI APIs — as a builder, not just a user." },
+  { name: "Data Thinking", desc: "Turning raw data into structured dashboards and decisions." },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="relative py-32 md:py-48 border-t border-border">
+    <section id="skills" className="relative py-16 md:py-24 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="mb-16 reveal">
           <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-4">

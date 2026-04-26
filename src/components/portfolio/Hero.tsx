@@ -48,12 +48,6 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="reveal mt-12 flex flex-col items-start">
-          <p className="text-muted-foreground flex items-center gap-2 animate-pulse font-mono text-[11px] uppercase tracking-[0.3em]">
-            Scroll to see projects
-            <ArrowDown className="w-3.5 h-3.5" />
-          </p>
-        </div>
       </div>
 
       {/* bottom row: scroll cue + meta */}

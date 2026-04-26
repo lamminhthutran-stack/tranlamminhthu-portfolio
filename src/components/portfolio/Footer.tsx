@@ -2,7 +2,7 @@ import { ArrowRight, ArrowUp } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative pt-32 pb-12 border-t border-border overflow-hidden">
+    <footer id="contact" className="relative pt-16 pb-12 border-t border-border overflow-hidden">
       <div
         className="pointer-events-none absolute -bottom-80 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] rounded-full blur-3xl opacity-30"
         style={{ background: "radial-gradient(circle, var(--accent), transparent 60%)" }}

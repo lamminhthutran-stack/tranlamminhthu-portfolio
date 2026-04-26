@@ -1,6 +1,6 @@
 export function About() {
   return (
-    <section id="about" className="relative py-32 md:py-48 border-t border-border">
+    <section id="about" className="relative py-16 md:py-24 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid md:grid-cols-12 gap-12">
         <div className="md:col-span-5 reveal">
           <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-4">
@@ -33,17 +33,11 @@ export function About() {
             </div>
           </div>
         </div>
-        <div className="md:col-span-7 reveal">
-          <h2 className="text-3xl md:text-5xl tracking-[-0.03em] font-medium leading-[1.05]">
-            <span className="text-gradient">
-              I design workflows, solve operational bottlenecks, and build scalable systems
-            </span>{" "}
-            <span className="text-muted-foreground italic font-light">
-              — turning ambiguity into clear, executable processes.
-            </span>
+        <div className="md:col-span-7 reveal md:pt-8">
+          <h2 className="text-3xl md:text-5xl tracking-[-0.03em] font-medium mb-8 text-foreground">
+            About Me
           </h2>
-
-          <div className="mt-12 grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
+          <div className="grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
             <p>
               Operations-oriented undergraduate with experience in workflow design,
               automation, and operational problem solving. Currently studying
@@ -60,18 +54,23 @@ export function About() {
             </p>
           </div>
 
-          <div className="mt-12 flex flex-col gap-6 pt-8 border-t border-border">
-            <div>
-              <h4 className="text-lg font-medium text-accent">Kindness</h4>
-              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Fix the system, not the blame. Encourage and empower people to grow through mistakes.</p>
+          <div className="mt-12 pt-8 border-t border-border">
+            <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-6">
+              ✦ Core Values
             </div>
-            <div>
-              <h4 className="text-lg font-medium text-accent">Lifelong Learner</h4>
-              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Connect patterns across domains. Every conversation is a resource.</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-medium text-accent">Can-Do Attitude</h4>
-              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Figure it out first, refine later. Ambiguity is a problem to solve, not a reason to hesitate.</p>
+            <div className="flex flex-col gap-6">
+              <div>
+                <h4 className="text-lg font-medium text-accent">Kindness</h4>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Fix the system, not the blame. Encourage and empower people to grow through mistakes.</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-accent">Lifelong Learner</h4>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Connect patterns across domains. Every conversation is a resource.</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-accent">Can-Do Attitude</h4>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Figure it out first, refine later. Ambiguity is a problem to solve, not a reason to hesitate.</p>
+              </div>
             </div>
           </div>
         </div>
