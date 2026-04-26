@@ -123,7 +123,7 @@ export const projects: Project[] = [
                 ]
             }
         ],
-        video: "/Partner%20Sheets%20Splitter.mov",
+        video: "/Partner%20Sheets%20Splitter.mp4",
     },
     {
         id: "project-x-workflow",
@@ -205,7 +205,7 @@ export const projects: Project[] = [
         content: [
             {
                 title: "Dashboard 1 — Adidas Sales Performance (Power BI)",
-                video: "/vid.mov"
+                video: "/vid.mp4"
             },
             {
                 title: "Overview",
@@ -238,7 +238,7 @@ export const projects: Project[] = [
             },
             {
                 title: "Dashboard 2 — PepsiCo Sales Performance (Excel)",
-                video: "/vid1.mov"
+                video: "/vid1.mp4"
             },
             {
                 title: "Overview",
