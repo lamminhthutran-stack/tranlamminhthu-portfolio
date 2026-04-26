@@ -28,8 +28,12 @@ export function About() {
               <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">
                 Operator · Builder
               </div>
-              <div className="mt-1 text-2xl font-medium text-white drop-shadow-md">Trần Lâm Minh Thư</div>
-              <div className="text-sm text-white/80 drop-shadow-md">Yonsei · International Commerce · Applied Information Engineering</div>
+              <div className="mt-1 text-2xl font-medium text-white drop-shadow-md">
+                Trần Lâm Minh Thư
+              </div>
+              <div className="text-sm text-white/80 drop-shadow-md">
+                Yonsei · International Commerce · Applied Information Engineering
+              </div>
             </div>
           </div>
         </div>
@@ -39,18 +43,17 @@ export function About() {
           </h2>
           <div className="grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
             <p>
-              Operations-oriented undergraduate with experience in workflow design,
-              automation, and operational problem solving. Currently studying
-              International Commerce and Applied Information Engineering at{" "}
-              <span className="text-accent">Yonsei University</span>, with a strong
-              interest in systems, execution, and continuous improvement.
+              Operations-oriented undergraduate with experience in workflow design, automation, and
+              operational problem solving. Currently studying International Commerce and Applied
+              Information Engineering at <span className="text-accent">Yonsei University</span>,
+              with a strong interest in systems, execution, and continuous improvement.
             </p>
 
             <p>
-              Known for a strong can-do attitude and ownership beyond scope, I proactively
-              identify opportunities to improve and scale processes. I combine attention
-              to detail with system thinking to turn messy challenges into structured
-              workflows, faster execution, and measurable outcomes.
+              Known for a strong can-do attitude and ownership beyond scope, I proactively identify
+              opportunities to improve and scale processes. I combine attention to detail with
+              system thinking to turn messy challenges into structured workflows, faster execution,
+              and measurable outcomes.
             </p>
           </div>
 
@@ -61,15 +64,23 @@ export function About() {
             <div className="flex flex-col gap-6">
               <div>
                 <h4 className="text-lg font-medium text-accent">Kindness</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Fix the system, not the blame. Encourage and empower people to grow through mistakes.</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  Fix the system, not the blame. Encourage and empower people to grow through
+                  mistakes.
+                </p>
               </div>
               <div>
                 <h4 className="text-lg font-medium text-accent">Lifelong Learner</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Connect patterns across domains. Every conversation is a resource.</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  Connect patterns across domains. Every conversation is a resource.
+                </p>
               </div>
               <div>
                 <h4 className="text-lg font-medium text-accent">Can-Do Attitude</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Figure it out first, refine later. Ambiguity is a problem to solve, not a reason to hesitate.</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  Figure it out first, refine later. Ambiguity is a problem to solve, not a reason
+                  to hesitate.
+                </p>
               </div>
             </div>
           </div>

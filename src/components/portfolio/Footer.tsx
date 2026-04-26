@@ -21,7 +21,7 @@ export function Footer() {
 
         <div className="reveal mt-12 flex flex-wrap items-center gap-3">
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="inline-flex items-center gap-2 border border-border px-6 py-3.5 rounded text-sm font-medium hover:border-accent hover:text-accent transition-colors cursor-pointer"
           >
             Back to top
@@ -32,22 +32,32 @@ export function Footer() {
         <div className="mt-24 pt-8 border-t border-border grid md:grid-cols-3 gap-8 text-sm text-muted-foreground">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">Email</div>
-            <a className="text-foreground hover:text-accent transition-colors" href="mailto:hello@example.com">
+            <a
+              className="text-foreground hover:text-accent transition-colors"
+              href="mailto:hello@example.com"
+            >
               lamminhthutran@gmail.com
             </a>
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">Elsewhere</div>
             <div className="flex gap-5">
-              <a href="https://www.linkedin.com/in/haileythutran/" className="text-foreground hover:text-accent transition-colors">LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/haileythutran/"
+                className="text-foreground hover:text-accent transition-colors"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
           <div className="md:text-right">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">© 2026 — Minh Thư</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] mb-2">
+              © 2026 — Minh Thư
+            </div>
             <div>Designed &amp; built with intent.</div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

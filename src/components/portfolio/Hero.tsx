@@ -35,7 +35,9 @@ export function Hero() {
         </div>
 
         <h1 className="reveal text-[clamp(2.5rem,6vw,7.5rem)] leading-[1.05] md:leading-[0.95] tracking-[-0.04em] font-semibold">
-          <span className="text-gradient block md:whitespace-nowrap">I solve operational bottlenecks,</span>
+          <span className="text-gradient block md:whitespace-nowrap">
+            I solve operational bottlenecks,
+          </span>
           <span className="block mt-3 md:mt-5 lg:mt-6">
             <span className="text-gradient">by building</span>{" "}
             <span className="text-accent-gradient italic font-light">scalable products.</span>
@@ -44,10 +46,10 @@ export function Hero() {
 
         <div className="reveal mt-12 grid md:grid-cols-12 gap-8 items-end">
           <p className="md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-            Ops-minded problem solver with product thinking — turning messy workflows into systems that improve speed, clarity, and execution.
+            Ops-minded problem solver with product thinking — turning messy workflows into systems
+            that improve speed, clarity, and execution.
           </p>
         </div>
-
       </div>
 
       {/* bottom row: scroll cue + meta */}

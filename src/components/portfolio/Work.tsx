@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { projects } from "@/data/projects";
 import { resolveAsset } from "@/lib/utils";
 
-const getProjectPreviewMedia = (p: typeof projects[0]) => {
+const getProjectPreviewMedia = (p: (typeof projects)[0]) => {
   if (p.video) return { type: "video" as const, src: p.video };
   if (Array.isArray(p.content)) {
     const mediaItem = p.content.find((c) => c.video || c.image);
@@ -28,9 +28,7 @@ export function Work() {
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-[-0.035em] font-semibold max-w-none md:whitespace-nowrap">
               <span className="text-gradient">A few projects built</span>{" "}
-              <span className="italic font-light text-muted-foreground">
-                for real leverage.
-              </span>
+              <span className="italic font-light text-muted-foreground">for real leverage.</span>
             </h2>
           </div>
           <div className="font-mono text-xs text-muted-foreground">
@@ -109,23 +107,16 @@ export function Work() {
                   <div className="col-span-12 md:col-span-2 flex items-start justify-between md:justify-end gap-4 font-mono text-xs text-muted-foreground pt-3">
                     <span className="flex md:hidden gap-2">
                       {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-0.5 rounded border border-border"
-                        >
+                        <span key={t} className="px-2 py-0.5 rounded border border-border">
                           {t}
                         </span>
                       ))}
                     </span>
-                    <span className="group-hover:text-accent transition-colors">
-                      {p.year}
-                    </span>
+                    <span className="group-hover:text-accent transition-colors">{p.year}</span>
                     <ArrowUpRight
                       className="h-4 w-4 transition-all duration-500 group-hover:text-accent"
                       style={{
-                        transform: isHover
-                          ? "translate(6px, -6px)"
-                          : "translate(0,0)",
+                        transform: isHover ? "translate(6px, -6px)" : "translate(0,0)",
                       }}
                     />
                   </div>
@@ -147,16 +138,33 @@ export function Work() {
             }}
           >
             {/* Background Media */}
-            {hover !== null && (() => {
-              const media = getProjectPreviewMedia(projects[hover]);
-              if (!media) return null;
-              if (media.type === 'video') return <video src={resolveAsset(media.src)} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />;
-              if (media.type === 'image') {
-                const src = typeof media.src === 'string' ? media.src : media.src.url;
-                return <img src={resolveAsset(src)} alt="project preview" className="absolute inset-0 w-full h-full object-cover" />;
-              }
-              return null;
-            })()}
+            {hover !== null &&
+              (() => {
+                const media = getProjectPreviewMedia(projects[hover]);
+                if (!media) return null;
+                if (media.type === "video")
+                  return (
+                    <video
+                      src={resolveAsset(media.src)}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  );
+                if (media.type === "image") {
+                  const src = typeof media.src === "string" ? media.src : media.src.url;
+                  return (
+                    <img
+                      src={resolveAsset(src)}
+                      alt="project preview"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  );
+                }
+                return null;
+              })()}
             {/* Gradient Overlay */}
             <div
               className="absolute inset-0 opacity-30 transition-all duration-500"
@@ -184,8 +192,6 @@ export function Work() {
             </div>
           </div>
         </div>
-
-
       </div>
     </section>
   );

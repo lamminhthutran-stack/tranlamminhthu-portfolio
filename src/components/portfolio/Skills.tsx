@@ -1,9 +1,18 @@
 const skills = [
-  { name: "Attention to Detail", desc: "Catching what others miss. Designing systems where nothing falls through the cracks." },
-  { name: "System Thinking", desc: "Seeing bottlenecks before they happen. Designing for scale, not just the immediate fix." },
+  {
+    name: "Attention to Detail",
+    desc: "Catching what others miss. Designing systems where nothing falls through the cracks.",
+  },
+  {
+    name: "System Thinking",
+    desc: "Seeing bottlenecks before they happen. Designing for scale, not just the immediate fix.",
+  },
   { name: "Operations", desc: "Running programs, comms, and logistics without dropping the ball." },
   { name: "Workflow Design", desc: "Mapping ops end-to-end into clean, repeatable systems." },
-  { name: "Automation", desc: "Removing manual toil with n8n, webhooks, and AI APIs — as a builder, not just a user." },
+  {
+    name: "Automation",
+    desc: "Removing manual toil with n8n, webhooks, and AI APIs — as a builder, not just a user.",
+  },
   { name: "Data Thinking", desc: "Turning raw data into structured dashboards and decisions." },
 ];
 
@@ -29,18 +38,16 @@ export function Skills() {
             >
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                style={{ background: "radial-gradient(circle at 50% 0%, var(--glow), transparent 60%)" }}
+                style={{
+                  background: "radial-gradient(circle at 50% 0%, var(--glow), transparent 60%)",
+                }}
               />
-              <div className="relative font-mono text-xs text-accent">
-                0{i + 1}
-              </div>
+              <div className="relative font-mono text-xs text-accent">0{i + 1}</div>
               <div className="relative">
                 <h3 className="text-2xl md:text-3xl tracking-tight font-medium group-hover:text-accent transition-colors">
                   {s.name}
                 </h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  {s.desc}
-                </p>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             </div>
           ))}

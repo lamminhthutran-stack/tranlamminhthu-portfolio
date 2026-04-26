@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -31,24 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Configure Static Build for GitHub Pages
-        run: |
-          cat << 'EOF' > vite.config.ts
-          import { defineConfig } from "vite";
-          import react from "@vitejs/plugin-react";
-          import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-          import tsconfigPaths from "vite-tsconfig-paths";
-          import tailwindcss from "@tailwindcss/vite";
 
-          export default defineConfig({
-            plugins: [TanStackRouterVite(), react(), tailwindcss(), tsconfigPaths()],
-            base: "/tranlamminhthu-portfolio/"
-          });
-          EOF
 
       - name: Build SPA
         run: npm run build
-        
+
       - name: Setup 404 for Client-Side Routing
         run: cp dist/index.html dist/404.html
 
@@ -58,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: "./dist"
 
   deploy:
     environment:
