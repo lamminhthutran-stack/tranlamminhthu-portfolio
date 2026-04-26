@@ -101,22 +101,6 @@ function ProjectDetail() {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                    ) : project.metric ? (
-                        <div
-                            className="aspect-video w-full rounded border border-border mb-24 relative overflow-hidden reveal shadow-2xl"
-                            style={{ background: project.gradient }}
-                        >
-                            <div className="absolute inset-0 grain opacity-40 mix-blend-overlay"></div>
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/40 to-transparent"></div>
-                            <div className="absolute bottom-8 left-8 right-8 text-white/90">
-                                <div className="font-mono text-xs uppercase tracking-widest mb-2 opacity-70">
-                                    Metrics
-                                </div>
-                                <div className="text-2xl font-medium tracking-tight">
-                                    {project.metric}
-                                </div>
-                            </div>
-                        </div>
                     ) : null}
 
                     <div className="w-full text-lg md:text-xl text-muted-foreground leading-relaxed space-y-16 pb-20">
