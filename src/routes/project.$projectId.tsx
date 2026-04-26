@@ -106,7 +106,7 @@ function ProjectDetail() {
                     <div className="w-full text-lg md:text-xl text-muted-foreground leading-relaxed space-y-16 pb-20">
                         {typeof project.content === 'string' ? (
                             <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal">
-                                <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent pt-1">
+                                <div className="font-mono text-sm uppercase tracking-[0.2em] text-white font-bold pt-1">
                                     Overview
                                 </div>
                                 <div className="space-y-6">
@@ -118,7 +118,7 @@ function ProjectDetail() {
                         ) : (
                             project.content.map((section, idx) => (
                                 <div key={idx} className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal">
-                                    <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent pt-1">
+                                    <div className="font-mono text-sm uppercase tracking-[0.2em] text-white font-bold pt-1">
                                         {section.title}
                                     </div>
                                     <div className="space-y-6">
