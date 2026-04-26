@@ -14,8 +14,7 @@ export function Footer() {
             ✺ Contact / Let's talk
           </div>
           <h2 className="text-[clamp(2.75rem,11vw,11rem)] leading-[0.9] tracking-[-0.045em] font-semibold">
-            <span className="text-gradient">Let's build something</span>
-            <br />
+            <span className="text-gradient">Let's build something</span>{" "}
             <span className="italic font-light text-accent-gradient">meaningful.</span>
           </h2>
         </div>
