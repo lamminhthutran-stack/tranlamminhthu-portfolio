@@ -23,14 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: 20
 
       - name: Install dependencies
-        run: bun install
-        
+        run: npm install
+
       - name: Configure Static Build for GitHub Pages
         run: |
           cat << 'EOF' > vite.config.ts
@@ -47,7 +47,7 @@ jobs:
           EOF
 
       - name: Build SPA
-        run: bun run build
+        run: npm run build
         
       - name: Setup 404 for Client-Side Routing
         run: cp dist/index.html dist/404.html
