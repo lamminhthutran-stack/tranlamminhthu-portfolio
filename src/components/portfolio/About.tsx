@@ -60,21 +60,19 @@ export function About() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-3 gap-6 pt-8 border-t border-border">
-            {[
-              ["100+", "applicants supported"],
-              ["04", "ops systems shipped"],
-              ["∞", "automations dreamt up"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <div className="text-3xl md:text-4xl font-semibold tracking-tight text-accent">
-                  {n}
-                </div>
-                <div className="text-[10px] md:text-xs uppercase tracking-[0.18em] text-muted-foreground mt-2">
-                  {l}
-                </div>
-              </div>
-            ))}
+          <div className="mt-12 flex flex-col gap-6 pt-8 border-t border-border">
+            <div>
+              <h4 className="text-lg font-medium text-accent">Kindness</h4>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Fix the system, not the blame. Encourage and empower people to grow through mistakes.</p>
+            </div>
+            <div>
+              <h4 className="text-lg font-medium text-accent">Lifelong Learner</h4>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Connect patterns across domains. Every conversation is a resource.</p>
+            </div>
+            <div>
+              <h4 className="text-lg font-medium text-accent">Can-Do Attitude</h4>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">Figure it out first, refine later. Ambiguity is a problem to solve, not a reason to hesitate.</p>
+            </div>
           </div>
         </div>
       </div>

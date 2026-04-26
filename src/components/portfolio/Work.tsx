@@ -3,6 +3,16 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { projects } from "@/data/projects";
 
+const getProjectPreviewMedia = (p: typeof projects[0]) => {
+  if (p.video) return { type: "video" as const, src: p.video };
+  if (Array.isArray(p.content)) {
+    const mediaItem = p.content.find((c) => c.video || c.image);
+    if (mediaItem?.video) return { type: "video" as const, src: mediaItem.video };
+    if (mediaItem?.image) return { type: "image" as const, src: mediaItem.image };
+  }
+  return null;
+};
+
 export function Work() {
   const [hover, setHover] = useState<number | null>(null);
 
@@ -87,7 +97,7 @@ export function Work() {
                     {p.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border border-border text-muted-foreground group-hover:border-accent/60 group-hover:text-accent transition-colors"
+                        className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded border border-border text-muted-foreground group-hover:border-accent/60 group-hover:text-accent transition-colors"
                       >
                         {t}
                       </span>
@@ -100,7 +110,7 @@ export function Work() {
                       {p.tags.map((t) => (
                         <span
                           key={t}
-                          className="px-2 py-0.5 rounded-full border border-border"
+                          className="px-2 py-0.5 rounded border border-border"
                         >
                           {t}
                         </span>
@@ -125,56 +135,56 @@ export function Work() {
 
           {/* Floating preview card (desktop) */}
           <div
-            className="pointer-events-none hidden lg:block fixed top-1/2 right-12 w-[340px] h-[230px] rounded-2xl border border-border overflow-hidden transition-all duration-500 z-40"
+            className="pointer-events-none hidden lg:block fixed top-1/2 right-12 w-[340px] h-[230px] rounded border border-border overflow-hidden transition-all duration-500 z-40 bg-card"
             style={{
               opacity: hover !== null ? 1 : 0,
               transform: `translateY(-50%) scale(${hover !== null ? 1 : 0.92})`,
-              background: hover !== null ? projects[hover].gradient : "transparent",
               boxShadow:
                 hover !== null
                   ? "0 30px 80px -20px rgba(0,0,0,0.6), 0 0 60px -20px var(--glow)"
                   : "none",
             }}
           >
+            {/* Background Media */}
+            {hover !== null && (() => {
+              const media = getProjectPreviewMedia(projects[hover]);
+              if (!media) return null;
+              if (media.type === 'video') return <video src={media.src} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />;
+              if (media.type === 'image') {
+                const src = typeof media.src === 'string' ? media.src : media.src.url;
+                return <img src={src} alt="project preview" className="absolute inset-0 w-full h-full object-cover" />;
+              }
+              return null;
+            })()}
+            {/* Gradient Overlay */}
+            <div
+              className="absolute inset-0 opacity-30 transition-all duration-500"
+              style={{ background: hover !== null ? projects[hover].gradient : "transparent" }}
+            />
+            {/* Base legibility overlay */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/40 to-transparent z-0" />
             <div className="absolute inset-0 grain opacity-30" />
-            <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
+            <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60 drop-shadow-md">
                 {hover !== null && projects[hover].n} — Preview
               </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-blink" />
+              <span className="h-1.5 w-1.5 rounded bg-accent shadow-[0_0_8px_var(--accent)]" />
             </div>
-            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between z-10">
               <div>
-                <div className="text-white text-base font-medium">
+                <div className="text-white text-base font-medium drop-shadow-lg">
                   {hover !== null && projects[hover].title}
                 </div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60 mt-1">
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80 mt-1 drop-shadow-md">
                   {hover !== null && projects[hover].metric}
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-white/80" />
+              <ArrowUpRight className="h-4 w-4 text-white drop-shadow-md" />
             </div>
           </div>
         </div>
 
-        {/* Mobile preview grid */}
-        <div className="mt-16 grid sm:grid-cols-2 gap-4 lg:hidden">
-          {projects.map((p) => (
-            <div
-              key={p.n}
-              className="aspect-[4/3] rounded-2xl border border-border overflow-hidden relative"
-              style={{ background: p.gradient }}
-            >
-              <div className="absolute inset-0 grain opacity-30" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
-                  {p.n} · {p.metric}
-                </div>
-                <div className="text-white text-sm font-medium mt-1">{p.title}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+
       </div>
     </section>
   );

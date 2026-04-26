@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -48,21 +48,11 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="reveal mt-12 flex flex-wrap items-center gap-3">
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3.5 rounded-full text-sm font-medium hover:bg-accent-bright transition-all duration-300 ring-glow"
-            style={{ backgroundColor: "var(--accent)" }}
-          >
-            View Projects
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-          <a
-            href="#about"
-            className="inline-flex items-center gap-2 border border-border px-6 py-3.5 rounded-full text-sm font-medium hover:border-accent hover:text-accent transition-colors"
-          >
-            About Me
-          </a>
+        <div className="reveal mt-12 flex flex-col items-start">
+          <p className="text-muted-foreground flex items-center gap-2 animate-pulse font-mono text-[11px] uppercase tracking-[0.3em]">
+            Scroll to see projects
+            <ArrowDown className="w-3.5 h-3.5" />
+          </p>
         </div>
       </div>
 

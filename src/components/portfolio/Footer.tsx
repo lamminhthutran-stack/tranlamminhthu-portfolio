@@ -1,4 +1,4 @@
-import { ArrowUpRight, ArrowUp } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 
 export function Footer() {
   return (
@@ -21,21 +21,13 @@ export function Footer() {
         </div>
 
         <div className="reveal mt-12 flex flex-wrap items-center gap-3">
-          <a
-            href="mailto:hello@example.com"
-            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-medium transition-all ring-glow"
-            style={{ backgroundColor: "var(--accent)", color: "var(--accent-foreground)" }}
-          >
-            Start a conversation
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-          <a
-            href="#top"
-            className="inline-flex items-center gap-2 border border-border px-6 py-3.5 rounded-full text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="inline-flex items-center gap-2 border border-border px-6 py-3.5 rounded text-sm font-medium hover:border-accent hover:text-accent transition-colors cursor-pointer"
           >
             Back to top
             <ArrowUp className="h-4 w-4" />
-          </a>
+          </button>
         </div>
 
         <div className="mt-24 pt-8 border-t border-border grid md:grid-cols-3 gap-8 text-sm text-muted-foreground">

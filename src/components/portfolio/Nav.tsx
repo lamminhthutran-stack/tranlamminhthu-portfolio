@@ -20,7 +20,7 @@ export function Nav() {
             <a
               key={l.label}
               href={l.href}
-              className="px-3 py-1.5 rounded-full text-muted-foreground hover:text-accent transition-colors"
+              className="px-3 py-1.5 rounded text-muted-foreground hover:text-accent transition-colors"
             >
               {l.label}
             </a>
