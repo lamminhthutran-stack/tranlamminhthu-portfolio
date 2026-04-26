@@ -106,7 +106,7 @@ function ProjectDetail() {
                     <div className="w-full text-lg md:text-xl text-muted-foreground leading-relaxed space-y-16 pb-20">
                         {typeof project.content === 'string' ? (
                             <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal">
-                                <div className="text-lg md:text-xl font-bold text-white tracking-tight pt-1">
+                                <div className="font-mono text-sm uppercase tracking-[0.2em] text-white font-bold pt-1">
                                     Overview
                                 </div>
                                 <div className="space-y-6">
@@ -116,77 +116,87 @@ function ProjectDetail() {
                                 </div>
                             </div>
                         ) : (
-                            project.content.map((section, idx) => (
-                                <div key={idx} className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal">
-                                    <div className="text-lg md:text-xl font-bold text-white tracking-tight pt-1">
-                                        {section.title}
-                                    </div>
-                                    <div className="space-y-6">
-                                        {Array.isArray(section.body) ? (
-                                            <ul className="list-disc pl-6 space-y-3">
-                                                {section.body.map((item, i) => (
-                                                    <li key={i}>{item}</li>
-                                                ))}
-                                            </ul>
-                                        ) : section.body ? (
-                                            <p className="whitespace-pre-wrap">{section.body}</p>
-                                        ) : null}
+                            project.content.map((section, idx) => {
+                                const isSessionTitle = section.title.toLowerCase().startsWith("section") || section.title.toLowerCase().startsWith("dashboard");
 
-                                        {section.fileDownload && (
-                                            <div className="mt-4 mb-8">
-                                                <a
-                                                    href={section.fileDownload.url}
-                                                    download
-                                                    className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors underline underline-offset-4"
-                                                >
-                                                    <Download className="w-4 h-4" />
-                                                    {section.fileDownload.label}
-                                                </a>
+                                return (
+                                    <div key={idx} className={isSessionTitle ? "reveal mt-20 mb-8" : "grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal"}>
+                                        {isSessionTitle ? (
+                                            <div className="text-xl md:text-2xl font-bold text-white tracking-tight mb-8 whitespace-nowrap">
+                                                {section.title}
+                                            </div>
+                                        ) : (
+                                            <div className="font-mono text-sm uppercase tracking-[0.2em] text-white font-bold pt-1">
+                                                {section.title}
                                             </div>
                                         )}
+                                        <div className="space-y-6">
+                                            {Array.isArray(section.body) ? (
+                                                <ul className="list-disc pl-6 space-y-3">
+                                                    {section.body.map((item, i) => (
+                                                        <li key={i}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            ) : section.body ? (
+                                                <p className="whitespace-pre-wrap">{section.body}</p>
+                                            ) : null}
 
-                                        {section.demoUrl && (
-                                            <div className="mt-8 mb-8">
-                                                <div className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card" style={{ aspectRatio: '1140 / 541.25' }}>
-                                                    <iframe
-                                                        title={section.title}
-                                                        className="w-full h-full absolute inset-0"
-                                                        src={section.demoUrl}
-                                                        frameBorder="0"
-                                                        allowFullScreen={true}>
-                                                    </iframe>
+                                            {section.fileDownload && (
+                                                <div className="mt-4 mb-8">
+                                                    <a
+                                                        href={section.fileDownload.url}
+                                                        download
+                                                        className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors underline underline-offset-4"
+                                                    >
+                                                        <Download className="w-4 h-4" />
+                                                        {section.fileDownload.label}
+                                                    </a>
                                                 </div>
-                                                {section.demoNote && (
-                                                    <p className="mt-4 text-sm text-muted-foreground italic">
-                                                        {section.demoNote}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        )}
-                                        {section.video && (
-                                            <div className="aspect-video w-full rounded-2xl border border-border mt-8 relative overflow-hidden shadow-xl bg-black">
-                                                <video
-                                                    src={section.video}
-                                                    autoPlay
-                                                    loop
-                                                    muted
-                                                    playsInline
-                                                    className="w-full h-full object-cover"
-                                                />
-                                            </div>
-                                        )}
-                                        {section.image && (
-                                            <div className="w-full rounded-2xl border border-border mt-8 relative overflow-hidden shadow-xl bg-card">
-                                                <img
-                                                    src={typeof section.image === 'string' ? section.image : section.image.url}
-                                                    alt={typeof section.image === 'string' ? section.title : (section.image.alt || section.title)}
-                                                    className="w-full h-auto object-cover rounded"
-                                                />
-                                            </div>
-                                        )}
+                                            )}
+
+                                            {section.demoUrl && (
+                                                <div className="mt-8 mb-8">
+                                                    <div className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card" style={{ aspectRatio: '1140 / 541.25' }}>
+                                                        <iframe
+                                                            title={section.title}
+                                                            className="w-full h-full absolute inset-0"
+                                                            src={section.demoUrl}
+                                                            frameBorder="0"
+                                                            allowFullScreen={true}>
+                                                        </iframe>
+                                                    </div>
+                                                    {section.demoNote && (
+                                                        <p className="mt-4 text-sm text-muted-foreground italic">
+                                                            {section.demoNote}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {section.video && (
+                                                <div className={`aspect-video w-full rounded-2xl border border-border relative overflow-hidden shadow-xl bg-black ${!isSessionTitle ? 'mt-8' : ''}`}>
+                                                    <video
+                                                        src={section.video}
+                                                        autoPlay
+                                                        loop
+                                                        muted
+                                                        playsInline
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                            )}
+                                            {section.image && (
+                                                <div className={`w-full rounded-2xl border border-border relative overflow-hidden shadow-xl bg-card ${!isSessionTitle ? 'mt-8' : ''}`}>
+                                                    <img
+                                                        src={typeof section.image === 'string' ? section.image : section.image.url}
+                                                        alt={typeof section.image === 'string' ? section.title : (section.image.alt || section.title)}
+                                                        className="w-full h-auto object-cover rounded"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                );
+                            })
                         )}
                     </div>
                 </div>
