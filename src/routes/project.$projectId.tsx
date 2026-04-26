@@ -117,7 +117,7 @@ function ProjectDetail() {
                             </div>
                         ) : (
                             project.content.map((section, idx) => {
-                                const isSessionTitle = section.title.toLowerCase().startsWith("section") || section.title.toLowerCase().startsWith("dashboard");
+                                const isSessionTitle = section.title.toLowerCase().startsWith("section") || section.title.toLowerCase().startsWith("dashboard") || section.title.toLowerCase().startsWith("workflow");
 
                                 return (
                                     <div key={idx} className={isSessionTitle ? "reveal mt-20 mb-8" : "grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal"}>

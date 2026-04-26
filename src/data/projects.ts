@@ -136,7 +136,7 @@ export const projects: Project[] = [
         gradient: "linear-gradient(135deg, oklch(0.45 0.18 240), oklch(0.16 0.05 260))",
         content: [
             {
-                title: "Section 1 — Email Confirmation Workflow System",
+                title: "Workflow 1 — Email Confirmation Workflow System",
                 image: "/PJX%20Confirmation%20Email%20Workflow.png"
             },
             {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
                 ]
             },
             {
-                title: "Section 2 — Media Partnership Outreach Automation",
+                title: "Workflow 2 — Media Partnership Outreach Automation",
                 image: "/PJX%20Outreach%20Email.png"
             },
             {
