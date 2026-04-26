@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { projects } from "@/data/projects";
+import { resolveAsset } from "@/lib/utils";
 
 const getProjectPreviewMedia = (p: typeof projects[0]) => {
   if (p.video) return { type: "video" as const, src: p.video };
@@ -149,10 +150,10 @@ export function Work() {
             {hover !== null && (() => {
               const media = getProjectPreviewMedia(projects[hover]);
               if (!media) return null;
-              if (media.type === 'video') return <video src={media.src} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />;
+              if (media.type === 'video') return <video src={resolveAsset(media.src)} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />;
               if (media.type === 'image') {
                 const src = typeof media.src === 'string' ? media.src : media.src.url;
-                return <img src={src} alt="project preview" className="absolute inset-0 w-full h-full object-cover" />;
+                return <img src={resolveAsset(src)} alt="project preview" className="absolute inset-0 w-full h-full object-cover" />;
               }
               return null;
             })()}

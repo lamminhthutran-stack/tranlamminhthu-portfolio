@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/portfolio/Nav";
 import { CursorGlow } from "@/components/portfolio/CursorGlow";
 import { projects } from "@/data/projects";
+import { resolveAsset } from "@/lib/utils";
 import { ArrowLeft, Download } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
@@ -85,7 +86,7 @@ function ProjectDetail() {
                             <iframe
                                 title="Interactive Demo"
                                 className="w-full h-full absolute inset-0"
-                                src={project.demoUrl}
+                                src={resolveAsset(project.demoUrl)}
                                 frameBorder="0"
                                 allowFullScreen={true}>
                             </iframe>
@@ -93,7 +94,7 @@ function ProjectDetail() {
                     ) : project.video ? (
                         <div className="aspect-video w-full rounded border border-border mb-24 relative overflow-hidden reveal shadow-2xl bg-black">
                             <video
-                                src={project.video}
+                                src={resolveAsset(project.video)}
                                 autoPlay
                                 loop
                                 muted
@@ -160,7 +161,7 @@ function ProjectDetail() {
                                                         <iframe
                                                             title={section.title}
                                                             className="w-full h-full absolute inset-0"
-                                                            src={section.demoUrl}
+                                                            src={resolveAsset(section.demoUrl)}
                                                             frameBorder="0"
                                                             allowFullScreen={true}>
                                                         </iframe>
@@ -175,7 +176,7 @@ function ProjectDetail() {
                                             {section.video && (
                                                 <div className={`aspect-video w-full rounded-2xl border border-border relative overflow-hidden shadow-xl bg-black ${!isSessionTitle ? 'mt-8' : ''}`}>
                                                     <video
-                                                        src={section.video}
+                                                        src={resolveAsset(section.video)}
                                                         autoPlay
                                                         loop
                                                         muted
@@ -187,7 +188,7 @@ function ProjectDetail() {
                                             {section.image && (
                                                 <div className={`w-full rounded-2xl border border-border relative overflow-hidden shadow-xl bg-card ${!isSessionTitle ? 'mt-8' : ''}`}>
                                                     <img
-                                                        src={typeof section.image === 'string' ? section.image : section.image.url}
+                                                        src={resolveAsset(typeof section.image === 'string' ? section.image : section.image.url)}
                                                         alt={typeof section.image === 'string' ? section.title : (section.image.alt || section.title)}
                                                         className="w-full h-auto object-cover rounded"
                                                     />
