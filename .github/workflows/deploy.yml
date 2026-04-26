@@ -41,7 +41,7 @@ jobs:
 
           export default defineConfig({
             plugins: [TanStackRouterVite(), react(), tsconfigPaths()],
-            base: "/operator-s-compass/"
+            base: "/tranlamminhthu-portfolio/"
           });
           EOF
 
