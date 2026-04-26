@@ -9,7 +9,7 @@ export function About() {
           <div className="aspect-[4/5] rounded-2xl border border-border relative overflow-hidden bg-black/20 group">
             {/* Find your photo, put it in the "public" folder, and rename it to "photo.jpg" */}
             <img
-              src="/photo.jpg"
+              src={`${import.meta.env.BASE_URL}photo.jpg`}
               alt="Profile"
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
             />
