@@ -7,6 +7,12 @@ export type ProjectContentSection = {
   demoNote?: string;
   demoAspectRatio?: string;
   fileDownload?: { url: string; label: string; caption?: string };
+  isFullWidth?: boolean;
+  comparisonDemos?: {
+    left: { url: string; title: string };
+    right: { url: string; title: string };
+    aspectRatio?: string;
+  };
 };
 
 export type Project = {
@@ -123,12 +129,6 @@ export const projects: Project[] = [
           "Structuring spreadsheet-based systems like lightweight internal tools",
           "Building end-to-end workflows that solve real operational bottlenecks",
         ],
-      },
-      {
-        title: "System Workflow: As-Is vs To-Be",
-        body: "This flowchart illustrates the transition from manual partner reporting workflows to an automated, scalable system.",
-        demoUrl: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=1-738&embed-host=share",
-        demoAspectRatio: "800 / 450",
       },
       {
         title: "Documentation",
