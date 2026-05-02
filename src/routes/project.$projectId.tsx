@@ -163,14 +163,19 @@ function ProjectDetail() {
                             <Download className="w-4 h-4" />
                             {section.fileDownload.label}
                           </a>
+                          {section.fileDownload.caption && (
+                            <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+                              {section.fileDownload.caption}
+                            </p>
+                          )}
                         </div>
                       )}
 
                       {section.demoUrl && (
-                        <div className="mt-8 mb-8">
+                        <div className={`mt-8 mb-8 ${section.demoAspectRatio ? "flex flex-col items-center" : ""}`}>
                           <div
-                            className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card"
-                            style={{ aspectRatio: "1140 / 541.25" }}
+                            className={`w-full rounded border border-border relative overflow-hidden shadow-xl bg-card ${section.demoAspectRatio ? "max-w-[800px]" : ""}`}
+                            style={{ aspectRatio: section.demoAspectRatio || "1140 / 541.25" }}
                           >
                             <iframe
                               title={section.title}
@@ -181,7 +186,7 @@ function ProjectDetail() {
                             ></iframe>
                           </div>
                           {section.demoNote && (
-                            <p className="mt-4 text-sm text-muted-foreground italic">
+                            <p className="mt-4 text-sm text-muted-foreground italic text-center">
                               {section.demoNote}
                             </p>
                           )}

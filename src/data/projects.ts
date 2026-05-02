@@ -5,7 +5,8 @@ export type ProjectContentSection = {
   image?: string | { url: string; alt?: string };
   demoUrl?: string;
   demoNote?: string;
-  fileDownload?: { url: string; label: string };
+  demoAspectRatio?: string;
+  fileDownload?: { url: string; label: string; caption?: string };
 };
 
 export type Project = {
@@ -123,6 +124,20 @@ export const projects: Project[] = [
           "Building end-to-end workflows that solve real operational bottlenecks",
         ],
       },
+      {
+        title: "System Workflow: As-Is vs To-Be",
+        body: "This flowchart illustrates the transition from manual partner reporting workflows to an automated, scalable system.",
+        demoUrl: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=1-738&embed-host=share",
+        demoAspectRatio: "800 / 450",
+      },
+      {
+        title: "Documentation",
+        fileDownload: {
+          url: "/Partner Reporting Automation System_SOP.docx",
+          label: "Download SOP Documentation",
+          caption: "Detailed step-by-step documentation of the system design, automation logic, and implementation workflow."
+        }
+      }
     ],
     video: "/Partner%20Sheets%20Splitter.mp4",
   },
