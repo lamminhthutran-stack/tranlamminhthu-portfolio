@@ -79,6 +79,16 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, oklch(0.46 0.18 248), oklch(0.18 0.06 268))",
     content: [
       {
+        title: "Workflow 3 — System: As-Is vs To-Be",
+        isFullWidth: true,
+        body: "This flowchart illustrates the transition from manual partner reporting workflows to an automated, scalable system.",
+        comparisonDemos: {
+          left: { url: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=1-738&embed-host=share", title: "As-Is Flowchart" },
+          right: { url: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=2-110&embed-host=share", title: "To-Be Flowchart" },
+          aspectRatio: "800 / 450"
+        }
+      },
+      {
         title: "Overview",
         body: "Built a Candidate CV Management Automation System using Google Apps Script to streamline recruitment operations from Google Form submissions to recruiter-ready partner sheets. Designed to automatically organize applicants by company and role, manage CV access permissions, and keep data synced with minimal manual intervention.",
       },
