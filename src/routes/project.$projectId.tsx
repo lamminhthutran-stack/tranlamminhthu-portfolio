@@ -128,7 +128,9 @@ function ProjectDetail() {
                   <div
                     key={idx}
                     className={
-                      isSessionTitle
+                      section.isFullWidth
+                        ? "reveal mt-20 mb-16 w-[100vw] relative left-1/2 -translate-x-1/2 px-6 md:px-10 bg-secondary/20 py-12"
+                        : isSessionTitle
                         ? "reveal mt-20 mb-8"
                         : "grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal"
                     }
@@ -190,6 +192,41 @@ function ProjectDetail() {
                               {section.demoNote}
                             </p>
                           )}
+                        </div>
+                      )}
+
+                      {section.comparisonDemos && (
+                        <div className="mt-12 mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1800px] mx-auto">
+                          <div className="flex flex-col w-full">
+                            <h3 className="text-xl font-medium mb-4 text-center">{section.comparisonDemos.left.title}</h3>
+                            <div
+                              className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card"
+                              style={{ aspectRatio: section.comparisonDemos.aspectRatio || "1140 / 541.25" }}
+                            >
+                              <iframe
+                                title={section.comparisonDemos.left.title}
+                                className="w-full h-full absolute inset-0"
+                                src={resolveAsset(section.comparisonDemos.left.url)}
+                                frameBorder="0"
+                                allowFullScreen={true}
+                              ></iframe>
+                            </div>
+                          </div>
+                          <div className="flex flex-col w-full">
+                            <h3 className="text-xl font-medium mb-4 text-center">{section.comparisonDemos.right.title}</h3>
+                            <div
+                              className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card"
+                              style={{ aspectRatio: section.comparisonDemos.aspectRatio || "1140 / 541.25" }}
+                            >
+                              <iframe
+                                title={section.comparisonDemos.right.title}
+                                className="w-full h-full absolute inset-0"
+                                src={resolveAsset(section.comparisonDemos.right.url)}
+                                frameBorder="0"
+                                allowFullScreen={true}
+                              ></iframe>
+                            </div>
+                          </div>
                         </div>
                       )}
                       {section.video && (
