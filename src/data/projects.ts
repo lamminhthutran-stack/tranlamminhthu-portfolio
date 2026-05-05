@@ -41,8 +41,8 @@ export const projects: Project[] = [
   {
     id: "ai-daily-newsletter",
     n: "01",
-    title: "Turning scattered information into a structured decision-support workflow",
-    impact: "Saved hours every week with auto-curated market briefings.",
+    title: "Daily News Briefing",
+    impact: "Turning scattered information into a structured decision-support workflow",
     tags: ["Automation", "Personal Project"],
     year: "2026",
     metric: "↓ 3 hrs / week",
@@ -105,9 +105,8 @@ export const projects: Project[] = [
   {
     id: "partner-reporting",
     n: "02",
-    title: "Standardizing handoffs through workflow mapping and SOP design",
-    impact:
-      "Built an automated Apps Script workflow that generated partner-facing sheets and reduced repetitive manual reporting work.",
+    title: "Partner Reporting System",
+    impact: "Standardizing handoffs through workflow mapping and SOP design",
     tags: ["Automation", "Operations", "Apps Script"],
     year: "2026",
     metric: "↓ 4 hrs / week",
@@ -183,8 +182,8 @@ export const projects: Project[] = [
   {
     id: "project-x-workflow",
     n: "03",
-    title: "Turning manual outreach into a repeatable operating workflow",
-    impact: "Automated communication for 700+ applicants across multiple cohorts.",
+    title: "Partnership Campaign System",
+    impact: "Turning manual outreach into a repeatable operating workflow",
     tags: ["Automation", "Marketing Campaign", "Communication"],
     year: "2025 - 2026",
     metric: "",
@@ -248,8 +247,8 @@ export const projects: Project[] = [
   {
     id: "dashboards-data-vis",
     n: "04",
-    title: "Turning raw sales data into executive-ready business visibility",
-    impact: "Reduced repetitive manual review tasks and lowered platform risk.",
+    title: "Sales Performance Dashboard",
+    impact: "From raw data to decision-ready insights",
     tags: ["Data Visualization", "Personal Project"],
     year: "2025",
     metric: "Faster decisions with live dashboards",
