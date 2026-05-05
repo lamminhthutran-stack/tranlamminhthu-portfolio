@@ -237,7 +237,7 @@ export const projects: Project[] = [
     ],
     video: "/Partner%20Sheets%20Splitter.mp4",
     headerDownload: {
-      url: "/Partner Reporting Automation_SOP.docx",
+      url: "/Partner%20Reporting%20Automation_SOP.docx",
       label: "Download SOP Documentation",
       caption: "Detailed step-by-step documentation of the system design, automation logic, and implementation workflow."
     }
