@@ -68,7 +68,7 @@ function ProjectDetail() {
             {project.headerDownload && (
               <div className="mt-8 reveal">
                 <a
-                  href={project.headerDownload.url}
+                  href={resolveAsset(project.headerDownload.url)}
                   download
                   className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors underline underline-offset-4"
                 >
@@ -183,7 +183,7 @@ function ProjectDetail() {
                       {section.fileDownload && (
                         <div className="mt-4 mb-8">
                           <a
-                            href={section.fileDownload.url}
+                            href={resolveAsset(section.fileDownload.url)}
                             download
                             className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors underline underline-offset-4"
                           >
