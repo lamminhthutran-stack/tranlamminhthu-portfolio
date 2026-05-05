@@ -1,5 +1,5 @@
 export type ProjectContentSection = {
-  title: string;
+  title?: string;
   body?: string | string[]; // string for paragraph, array for bullets
   video?: string;
   image?: string | { url: string; alt?: string };
@@ -12,6 +12,13 @@ export type ProjectContentSection = {
     left: { url: string; title: string };
     right: { url: string; title: string };
     aspectRatio?: string;
+    caption?: string;
+  };
+  comparisonVideos?: {
+    left: { url: string; title: string };
+    right: { url: string; title: string };
+    aspectRatio?: string;
+    caption?: string;
   };
 };
 
@@ -27,6 +34,7 @@ export type Project = {
   content: string | ProjectContentSection[]; // The content for the project sub-page
   video?: string; // Optional video URL or path
   demoUrl?: string; // Optional PowerBI/iframe demo URL
+  headerDownload?: { url: string; label: string; caption?: string }; // Optional download link in the header
 };
 
 export const projects: Project[] = [
@@ -42,27 +50,54 @@ export const projects: Project[] = [
     content: [
       {
         title: "Overview",
-        body: 'Built an automated Daily News Briefing system that aggregates articles from multiple sources, filters high-signal stories, and delivers AI-summarized reports with clear "So What" insights — cutting manual news review from hours to minutes.',
+        body: "An automated information workflow that collects news from selected sources, filters for high-signal updates, and delivers a structured daily briefing — separating facts from interpretation so each update is easier to act on.",
+      },
+      {
+        title: "Context",
+        body: "In fast-moving environments, important updates are scattered across multiple sources and easy to miss. Reading news manually creates information overload — too much volume, too little signal. For someone earlier in their career without deep domain context, the problem is compounded: even when the right articles surface, it is not always clear what changed, why it matters, or what to do with it.",
       },
       {
         title: "Problem",
-        body: "Scanning news across multiple sources daily was slow and inconsistent. Key macro, financial, and industry signals were often missed, and raw articles rarely surfaced clear business implications.",
+        body: "The core problem was not lack of information, but lack of structured filtering. News existed everywhere, but it was fragmented, repetitive, and time-consuming to process. What was missing was a faster way to identify what actually changed, why it mattered, and which updates deserved attention — with enough context to make the output actionable, not just informative.",
       },
       {
-        title: "Solution",
-        body: "Designed an n8n automation pipeline that pulls news via RSS/APIs, applies relevance filters, uses an LLM to summarize and generate insight bullets, then delivers a structured daily report — fully hands-off.",
+        title: "Why it mattered",
+        body: "Without a structured briefing workflow, it is easy to spend time scanning low-priority updates while missing high-impact signals. For someone building domain knowledge, an unstructured reading habit also means absorbing facts without understanding implications. The goal was a system that did not just summarize news, but helped develop the habit of thinking about information in terms of relevance, impact, and forward implication.",
+      },
+      {
+        title: "Decision-making",
+        body: "Rather than summarizing every article, I designed the briefing around three core questions: What happened? Why does it matter? Who is affected? Each article is scored against relevance criteria — topic fit, significance, and value-added — before being included. This filtering step happens before summarization, not after, which keeps the output focused rather than comprehensive by default.\n\nThe briefing format was also deliberately structured to include two sections most news summaries omit: Actionable Learnings and Forward Outlook. These exist specifically to bridge the gap between raw information and practical understanding — a deliberate design choice for someone still building domain fluency.",
+      },
+      {
+        title: "Tradeoff",
+        body: "A fully comprehensive briefing captures more information but quickly becomes overwhelming to read. A shorter briefing is easier to consume but risks losing nuance on complex topics. There is also a practical cost: more content means more token usage and longer processing time.\n\nThe decision was a priority-based format with a defined token budget — high-signal updates get full treatment, lower-priority items are either compressed or excluded. Conciseness was treated as a design constraint, not an afterthought.",
+      },
+      {
+        title: "System designed",
+        body: "Selected sources defined → articles collected via RSS and APIs → topic classification → relevance scoring and filtering → summary generated per article → \"why it matters\" and \"who is affected\" analysis added → Actionable Learnings and Forward Outlook sections appended → HTML formatting applied → daily briefing delivered.",
+      },
+      {
+        title: "Iteration and debugging",
+        body: "Three failure points emerged during build and were each addressed:\n\nDuplicate coverage across sources. Early outputs surfaced the same event multiple times from different outlets. The fix was shifting from article-level to event-level grouping — clustering by entity, time window, and key fact, then merging multiple sources into a single consolidated output.\n\nSummaries too generic. Initial prompts produced surface-level recaps with no analytical layer. The fix was rewriting the prompt around a fixed structure: what changed, what the key metric or signal was if available, and why it matters — rather than leaving the model to decide what to emphasize.\n\nIrrelevant articles passing through. Without an explicit filtering step, low-priority content made it into the briefing. The fix was adding a relevance scoring gate before summarization, so only articles meeting the threshold proceed to output.\n\nEach iteration made the briefing more structured, more signal-dense, and easier to read end to end.",
+      },
+      {
+        title: "Outcome",
+        body: "The system turned scattered daily news into a concise, structured briefing that made information review faster and more purposeful. Important updates became easier to identify, the \"so what\" layer was built into the output by default, and the workflow created a repeatable habit around processing information — not just consuming it.",
+      },
+      {
+        title: "What this demonstrates",
+        body: [
+          "Information workflow design",
+          "Automation thinking",
+          "Prompt engineering",
+          "Prioritization logic",
+          "Product thinking",
+          "Ability to turn fragmented inputs into a reusable decision-support system",
+        ],
       },
       {
         title: "Stack",
-        body: "n8n · RSS/APIs · LLM (Prompt Engineering) · JSON Parsing · Workflow Automation",
-      },
-      {
-        title: "What I Learned",
-        body: [
-          "Designing automation around business outcomes, not just technical logic",
-          "Prompt engineering for consistent, structured outputs",
-          "Building reliable pipelines with error handling and scalable logic",
-        ],
+        body: "n8n · RSS feeds and news APIs · LLM prompt engineering · HTML email formatting · Relevance scoring logic · Workflow automation",
       },
     ],
     video: "/daily_news_vid.mp4",
@@ -70,7 +105,7 @@ export const projects: Project[] = [
   {
     id: "partner-reporting",
     n: "02",
-    title: "Partner Reporting Automation System",
+    title: "Partner Reporting System",
     impact:
       "Built an automated Apps Script workflow that generated partner-facing sheets and reduced repetitive manual reporting work.",
     tags: ["Automation", "Operations", "Apps Script"],
@@ -79,82 +114,76 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, oklch(0.46 0.18 248), oklch(0.18 0.06 268))",
     content: [
       {
-        title: "Workflow 3 — System: As-Is vs To-Be",
         isFullWidth: true,
-        body: "This flowchart illustrates the transition from manual partner reporting workflows to an automated, scalable system.",
         comparisonDemos: {
           left: { url: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=1-738&embed-host=share", title: "As-Is Flowchart" },
           right: { url: "https://embed.figma.com/board/GuAmF01Ybaxcido7OtJGWV/Partner-Reporting-Automation-System?node-id=2-110&embed-host=share", title: "To-Be Flowchart" },
-          aspectRatio: "800 / 450"
+          aspectRatio: "800 / 450",
+          caption: "This flowchart illustrates the transition from manual partner reporting workflows to an automated, scalable system."
         }
       },
       {
         title: "Overview",
-        body: "Built a Candidate CV Management Automation System using Google Apps Script to streamline recruitment operations from Google Form submissions to recruiter-ready partner sheets. Designed to automatically organize applicants by company and role, manage CV access permissions, and keep data synced with minimal manual intervention.",
+        body: "A process documentation and reporting workflow improvement project for Project X Vietnam — mapping existing workflows, identifying operational bottlenecks, redesigning the process end-to-end, and producing both visual flowcharts and written SOP documentation for the team.",
+      },
+      {
+        title: "Context",
+        body: "The team managed partner-facing reporting and candidate handoffs across a high-volume recruitment cycle — approximately 300 applicants, each submitting 6 to 7 job applications. With that volume, operational clarity was not optional. The team needed a structured, repeatable way to manage reporting workflows and ensure nothing was missed during handoffs.",
       },
       {
         title: "Problem",
-        body: [
-          "Managing candidate submissions manually across Google Forms and spreadsheets was time-consuming and error-prone. Recruiters needed to sort applicants by company and position, create partner-facing sheets, update new submissions, prevent duplicates, and ensure CV files were accessible.",
-          "This created risks of delayed processing, duplicate records, broken file access, and inefficient handoff to hiring partners.",
-        ],
+        body: "Existing workflows were heavily manual, inconsistently executed, and undocumented. This created two compounding problems: internally, the team spent significant time correcting errors and chasing missing information; externally, partners received inconsistent or delayed reports, which eroded trust and satisfaction over time.\n\nBeyond the immediate errors, there was no SOP documentation — meaning every new team member had to learn the process from scratch, and the organization had no reliable foundation to scale from. Each cohort effectively started over.",
       },
       {
-        title: "Solution",
+        title: "Why it mattered",
+        body: "Partner reporting sits at the intersection of communication quality, accountability, and execution consistency. Errors in this layer do not stay internal — they surface directly to partners and affect how the program is perceived. At the volume Project X operates, even a small error rate compounds quickly. Fixing this also meant building something that future generations of the team could actually use, not just the people who were there when it was built.",
+      },
+      {
+        title: "Decision-making",
+        body: "Before choosing a format, I considered what different stakeholders actually needed. A flowchart alone is fast to read but too high-level for execution. A written SOP is thorough but slow to scan in the middle of a task. I chose to combine both: visual workflow maps for quick orientation and shared understanding, written SOPs for step-by-step execution guidance. Different people use documentation differently — the system needed to work for both.",
+      },
+      {
+        title: "Tradeoff",
+        body: "Apps Script runs natively under a Google account — no OAuth setup, no token refresh, no credential storage. Getting n8n connected to Gmail and Sheets requires OAuth verification, which adds significant setup time before anything can be tested.\n\nThe tradeoff: Apps Script has trigger frequency caps, execution time limits, and quota constraints that make it unsuitable for high-volume workflows like confirmation email systems. For this use case — moderate-volume, periodic reporting runs — it was the right call to validate the workflow fast before investing in a more scalable orchestration layer.",
+      },
+      {
+        title: "System designed",
+        body: "As-Is workflow mapped → bottlenecks and error points identified → To-Be workflow redesigned → SOP documentation written → visual flowcharts embedded as quick reference → SOP packaged as downloadable execution guide for the team.",
+      },
+      {
+        title: "Iteration",
+        body: "The first version of the documentation was more technical than it needed to be. After reviewing it against the perspective of a new team member encountering the process for the first time, I revised the SOP to prioritize clarity over completeness — simpler language, clearer step sequencing, and explicit notes on the decisions that are easy to get wrong. The goal was documentation that a beginner could follow without needing someone to explain it in person.",
+      },
+      {
+        title: "Outcome",
+        body: "The redesigned system eliminated reporting errors for partners, improved handoff consistency across the team, and gave Project X a standardized process it could carry forward into future cohorts. Partner satisfaction improved as communication became more reliable and predictable. Internally, the team spent less time on corrections and more time on execution. Most importantly, the knowledge was no longer locked in people's heads — it was documented, accessible, and ready to be handed off.",
+      },
+      {
+        title: "What this demonstrates",
         body: [
-          "Created an automated Apps Script workflow that reads raw form responses from Google Sheets, dynamically splits applicants into company sub-sheets, generates recruiter-facing spreadsheets by company and position, automatically unlocks CV viewing permissions, and runs through form triggers plus periodic syncs.",
-          "The system also includes duplicate prevention logic, trigger management, reset/rebuild tools, and concurrency protection using LockService.",
+          "Process design",
+          "Documentation thinking",
+          "Operational clarity",
+          "Stakeholder communication",
+          "Ability to turn ambiguous workflows into executable systems that outlast the people who built them",
         ],
       },
       {
         title: "Stack",
-        body: [
-          "Google Apps Script",
-          "Google Sheets",
-          "Google Forms",
-          "Google Drive API",
-          "Trigger Automation",
-          "Spreadsheet Workflow Logic",
-          "LockService",
-          "Data Validation Logic",
-        ],
-      },
-      {
-        title: "Outcome",
-        body: [
-          "Reduced manual workload in recruitment operations",
-          "Improved speed of candidate routing and partner handoff",
-          "Prevented duplicate applicant entries",
-          "Improved reliability of CV access sharing",
-          "Created a scalable and reusable hiring operations system",
-          "Increased visibility and control through automated sync workflows",
-        ],
-      },
-      {
-        title: "What I Learned",
-        body: [
-          "How to turn manual recruiting workflows into scalable internal systems",
-          "Designing automation that balances speed, reliability, and usability",
-          "Using triggers and concurrency controls for stable operations",
-          "Structuring spreadsheet-based systems like lightweight internal tools",
-          "Building end-to-end workflows that solve real operational bottlenecks",
-        ],
-      },
-      {
-        title: "Documentation",
-        fileDownload: {
-          url: "/Partner Reporting Automation System_SOP.docx",
-          label: "Download SOP Documentation",
-          caption: "Detailed step-by-step documentation of the system design, automation logic, and implementation workflow."
-        }
+        body: "Figma · Google Docs · Google Apps Script · Google Sheets · SOP Documentation · Workflow Mapping",
       }
     ],
     video: "/Partner%20Sheets%20Splitter.mp4",
+    headerDownload: {
+      url: "/Partner Reporting Automation System_SOP.docx",
+      label: "Download SOP Documentation",
+      caption: "Detailed step-by-step documentation of the system design, automation logic, and implementation workflow."
+    }
   },
   {
     id: "project-x-workflow",
     n: "03",
-    title: "Project X Workflow System",
+    title: "Media Partnership Outreach System",
     impact: "Automated communication for 700+ applicants across multiple cohorts.",
     tags: ["Automation", "Marketing Campaign", "Communication"],
     year: "2025 - 2026",
@@ -162,60 +191,57 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, oklch(0.45 0.18 240), oklch(0.16 0.05 260))",
     content: [
       {
-        title: "Workflow 1 — Email Confirmation Workflow System",
-        image: "/PJX%20Confirmation%20Email%20Workflow.png",
-      },
-      {
-        title: "Overview",
-        body: "Built an applicant operations automation for Project X Vietnam's Summer Fellowship recruitment — handling intake, segmentation, database logging, and confirmation emails end-to-end without manual intervention.",
-      },
-      {
-        title: "Problem",
-        body: "High application volume meant repetitive admin work: sorting submissions, updating spreadsheets, and sending confirmation emails manually — creating delays, inconsistency, and risk of missed responses.",
-      },
-      {
-        title: "Solution",
-        body: "Designed an n8n pipeline that receives submissions via webhook, classifies applicants as Early Bird or Normal based on submission time, logs records to the correct Google Sheet, and sends personalized HTML confirmation emails with auto-updated delivery status.",
-      },
-      {
-        title: "Stack",
-        body: "n8n · Google Sheets · Gmail · Webhooks · JavaScript · HTML Email Templates",
-      },
-      {
-        title: "What I Learned",
-        body: [
-          "Designing ops systems around real workflow bottlenecks, not just automation for automation's sake",
-          "Combining data routing + user communication in a single reliable pipeline",
-          "Building scalable, reusable workflows with tracking and status controls",
-        ],
-      },
-      {
-        title: "Workflow 2 — Media Partnership Outreach Automation",
         image: "/PJX%20Outreach%20Email.png",
       },
       {
         title: "Overview",
-        body: "Built an outreach automation system for Project X Vietnam's recruitment marketing — covering initial partner emails, timed follow-ups, and centralized campaign tracking across universities, clubs, and communities.",
+        body: "A semi-automated media partnership outreach system built for Project X Vietnam — managing partner leads, personalized email campaigns, follow-up logic, and campaign status tracking across the full outreach cycle.",
+      },
+      {
+        title: "Context",
+        body: "Project X Vietnam needed to reach out to potential media partners across universities, clubs, and communities while managing multiple leads, follow-up windows, and response statuses simultaneously. At scale, manual outreach made it difficult to maintain consistency, track who had responded, and ensure no lead fell through the cracks.",
       },
       {
         title: "Problem",
-        body: "Managing outreach to multiple partners manually made it hard to track send status, follow-up timing, and responses — creating missed opportunities and inconsistent communication across the pipeline.",
+        body: "Without a structured system, outreach risked becoming inconsistent — emails sent at different times, follow-ups missed, and campaign ownership unclear across the team. Beyond logistics, sending generic emails without personalizing partner names signals low priority and reduces response rates. The team needed a repeatable process that could handle volume without sacrificing quality.",
       },
       {
-        title: "Solution",
-        body: "Created an n8n workflow that reads partner leads from Google Sheets, sends personalized outreach emails, auto-triggers follow-ups for non-responders after a defined window, and updates tracking status in one centralized sheet.",
+        title: "Why it mattered",
+        body: "Partnership outreach directly affected program execution. Delayed or inconsistent communication could reduce confirmation rates, slow down partner onboarding, and create unnecessary coordination work for the Growth team down the line. Getting this right early meant fewer follow-up problems later.",
+      },
+      {
+        title: "Decision-making",
+        body: "Before building, I considered two approaches: fully manual tracking versus full end-to-end automation. Full automation would save the most time but risked sending incorrect follow-ups if response classification was wrong — the system would have no way to distinguish a \"yes\" reply from an out-of-office or a soft decline without human review.\n\nI chose a semi-automated system instead. Automation handles the repetitive, error-prone parts — generating personalized emails, triggering sends, managing follow-up timing — while the team retains control over the judgment call: reading each response and updating the status before the next action triggers.",
+      },
+      {
+        title: "Tradeoff",
+        body: "The main tradeoff was speed versus reliability. A fully automated response-tracking system could technically reduce more manual work, but misclassifying a partner reply — especially at the confirmation stage — could send an inappropriate follow-up to someone who had already agreed or declined. The cost of that mistake outweighed the time saved.\n\nThe decision was to keep response review manual: the Growth team reads incoming replies and updates the tracking sheet accordingly. Automation then picks up from there — filtering by response status and triggering the next action only when the status is confirmed. This kept the system fast where speed was safe and human where judgment was needed.",
+      },
+      {
+        title: "System designed",
+        body: "Partner lead sheet populated → status fields initialized → personalized email generated per lead (name, organization) → sent via Gmail → team manually reviews incoming responses → tracking sheet updated with response status → follow-up email triggered for non-responders based on status filter → campaign progress visible in centralized tracker.",
+      },
+      {
+        title: "Iteration and debugging",
+        body: "One critical design decision came from thinking through failure points before they happened. The main risk was incomplete or incorrectly formatted lead data — a wrong email format or missing field could interrupt the send flow mid-campaign.\n\nThe naive approach would be to send all emails in a batch and then update statuses. The problem: if the flow breaks halfway, there is no clean way to resume without risking duplicate sends or skipped leads.\n\nInstead, I designed the workflow as a loop: send one email → update that record's status → move to the next. This way, if the flow is interrupted for any reason, it can resume from exactly where it stopped rather than starting over. Each record's status acts as a checkpoint, making the system recoverable by default.",
+      },
+      {
+        title: "Outcome",
+        body: "The system reduced manual tracking work for the Growth team, improved communication consistency across leads, and made follow-up management easier to oversee. The centralized tracker gave the team a real-time view of campaign progress — who had been contacted, who had responded, and who needed a follow-up — without relying on memory or separate spreadsheets.",
+      },
+      {
+        title: "What this demonstrates",
+        body: [
+          "Workflow design",
+          "Automation thinking",
+          "Stakeholder communication",
+          "Operational ownership",
+          "Ability to scale a repeatable process without losing quality control",
+        ],
       },
       {
         title: "Stack",
-        body: "n8n · Google Sheets · Gmail · Conditional Routing · Email Personalization · Campaign Tracking",
-      },
-      {
-        title: "What I Learned",
-        body: [
-          "Operationalizing outbound campaigns as repeatable, scalable systems",
-          "Structuring CRM-like pipeline tracking with simple, accessible tools",
-          "Using automation to enforce follow-up discipline and reduce response drop-off",
-        ],
+        body: "n8n · Google Sheets · Gmail · Conditional routing · Email personalization · Campaign status tracking",
       },
     ],
   },
@@ -230,66 +256,63 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, oklch(0.4 0.17 270), oklch(0.16 0.05 250))",
     content: [
       {
-        title: "Dashboard 1 — Adidas Sales Performance (Power BI)",
-        video: "/vid.mp4",
+        title: "Interactive Dashboards",
+        isFullWidth: true,
+        comparisonVideos: {
+          left: { url: "/vid.mp4", title: "Dashboard 1 — Adidas Sales Performance" },
+          right: { url: "/vid1.mp4", title: "Dashboard 2 — PepsiCo Sales Performance" },
+          aspectRatio: "16 / 9"
+        }
       },
       {
         title: "Overview",
-        body: "Built an interactive Power BI dashboard analyzing Adidas retail partner performance across revenue, profit, margin, geography, and product lines — enabling self-serve analytics for stakeholder decision-making.",
+        body: "An Excel and Power BI dashboard built to track revenue, profitability, product performance, retailer contributions, and geographic trends — using pivot tables, slicers, KPI cards, and dynamic charts.",
+      },
+      {
+        title: "Context",
+        body: "The organization needed a clearer way to monitor sales performance across products, retailers, and regions. Raw sales data existed but was not decision-ready — scattered across records with no centralized view.",
       },
       {
         title: "Problem",
-        body: "Sales data across multiple retailers, cities, and product categories was fragmented. Decision-makers needed a faster way to monitor KPIs and drill into trends without manual spreadsheet work.",
+        body: "Managers could see individual sales records, but had no structured way to compare revenue, profitability, top-performing products, retailer contribution, and geographic trends in one place. This made it harder to identify what was actually driving performance and where attention was needed.",
       },
       {
-        title: "Solution",
-        body: "Designed a centralized dashboard with dynamic filters and DAX-driven KPIs, transforming raw transactional data into visual business insights — sliceable by retailer, location, and date in real time.",
+        title: "Why it mattered",
+        body: "Without a structured performance view, decisions risk becoming reactive or overly dependent on manual checks. The goal was to turn raw sales data into a reusable decision-support system — one that could be filtered, compared, and shared without rebuilding from scratch each time.",
       },
       {
-        title: "Stack",
-        body: "Power BI · DAX · Power Query · Excel/CSV",
+        title: "Decision-making",
+        body: "Before touching any data, I started by defining the key business questions the dashboard needed to answer:\n\n- Which products are driving revenue?\n- Which products are actually profitable?\n- Which retailers contribute the most to overall performance?\n- Which regions show stronger or weaker results?\n\nThis framing shaped every metric and layout decision that followed — ensuring the dashboard was built around real questions, not just available data.",
       },
       {
-        title: "What I Learned",
+        title: "Tradeoff",
+        body: "The main tension was between completeness and readability. It would have been easy to surface every available metric, but an overcrowded dashboard creates noise rather than clarity.\n\nThe decision was to group insights into four focused views — KPI summary, product-level performance, retailer contribution, and geographic trends — each answering a specific question. This kept the dashboard scannable and purposeful rather than exhaustive.\n\nIt's also worth noting what this dashboard is and is not: it's a descriptive snapshot of current performance, designed to support review conversations. It was not built for inferential analysis or predictive modeling — and scoping it that way kept the design honest.",
+      },
+      {
+        title: "System designed",
+        body: "Raw data → cleaned and structured tables → KPI logic defined → dashboard layout planned → pivot tables built → slicers added for dynamic filtering → final dashboard view assembled and tested.",
+      },
+      {
+        title: "Iteration",
+        body: "One key insight during build: revenue alone can be misleading. A high-volume product with thin margins can look like a win until profitability is layered in. To address this, revenue and margin views were kept separate, so users could identify not just what sold — but what actually contributed to the bottom line.",
+      },
+      {
+        title: "Outcome",
+        body: "The dashboard turned scattered sales records into an executive-friendly view that made performance easier to monitor, compare, and explain. Business reviews that previously required manual data pulls could instead start from a single, filterable source of truth.",
+      },
+      {
+        title: "What this demonstrates",
         body: [
-          "Structuring dashboards around business questions, not just charts",
-          "Translating raw data into KPIs that drive decisions",
-          "Designing for usability — empowering self-serve analysis over static reports",
+          "Operations thinking",
+          "Data structuring",
+          "KPI design",
+          "Business analysis",
+          "Ability to turn raw data into a decision-ready system",
         ],
       },
       {
-        title: "Interactive Demo",
-        demoUrl:
-          "https://app.powerbi.com/reportEmbed?reportId=6c360436-cc00-44c2-a011-6b6c772c3cc1&autoAuth=true&embeddedDemo=true",
-        demoNote: "* Sign in Microsoft business account to try interactive dashboards.",
-      },
-      {
-        title: "Dashboard 2 — PepsiCo Sales Performance (Excel)",
-        video: "/vid1.mp4",
-      },
-      {
-        title: "Overview",
-        body: "Built an interactive Excel dashboard for PepsiCo tracking revenue, profitability, brand mix, retailer contribution, and geographic trends — consolidating scattered data into one executive-ready reporting view.",
-      },
-      {
-        title: "Problem",
-        body: "Raw sales data across multiple retailers, brands, and time periods lived in separate spreadsheets — making performance tracking slow and insight generation manual.",
-      },
-      {
-        title: "Solution",
-        body: "Created a dynamic Excel dashboard using Pivot Tables, slicers, and KPI cards that lets users filter by retailer and date period to explore performance instantly — no formulas needed by end users.",
-      },
-      {
         title: "Stack",
-        body: "Microsoft Excel · Pivot Tables & Charts · Slicers / Timeline Filters · Advanced Formulas",
-      },
-      {
-        title: "What I Learned",
-        body: [
-          "Turning spreadsheets into decision-making tools without complex tech stacks",
-          "Building stakeholder-friendly dashboards with clear visual hierarchy",
-          "Balancing analytical depth with clean, usable presentation",
-        ],
+        body: "Power BI, Excel",
       },
       {
         title: "Project Files",

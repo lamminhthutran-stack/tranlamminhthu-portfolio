@@ -65,6 +65,24 @@ function ProjectDetail() {
               {project.impact}
             </p>
 
+            {project.headerDownload && (
+              <div className="mt-8 reveal">
+                <a
+                  href={project.headerDownload.url}
+                  download
+                  className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors underline underline-offset-4"
+                >
+                  <Download className="w-4 h-4" />
+                  {project.headerDownload.label}
+                </a>
+                {project.headerDownload.caption && (
+                  <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+                    {project.headerDownload.caption}
+                  </p>
+                )}
+              </div>
+            )}
+
             <div className="flex flex-wrap gap-3 mt-12 reveal">
               {project.tags.map((t) => (
                 <span
@@ -96,14 +114,16 @@ function ProjectDetail() {
             </div>
           ) : project.video ? (
             <div className="aspect-video w-full rounded border border-border mb-24 relative overflow-hidden reveal shadow-2xl bg-black">
-              <video
-                src={resolveAsset(project.video)}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
+                <video
+                  src={resolveAsset(project.video)}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  title={`${project.title} Demo`}
+                  className="w-full h-full object-cover"
+                />
             </div>
           ) : null}
 
@@ -120,9 +140,12 @@ function ProjectDetail() {
             ) : (
               project.content.map((section, idx) => {
                 const isSessionTitle =
-                  section.title.toLowerCase().startsWith("section") ||
-                  section.title.toLowerCase().startsWith("dashboard") ||
-                  section.title.toLowerCase().startsWith("workflow");
+                  section.title && (
+                    section.title.toLowerCase().startsWith("section") ||
+                    section.title.toLowerCase().startsWith("dashboard") ||
+                    section.title.toLowerCase().startsWith("workflow")
+                  );
+                const hasNoTitle = !section.title;
 
                 return (
                   <div
@@ -130,16 +153,16 @@ function ProjectDetail() {
                     className={
                       section.isFullWidth
                         ? "reveal mt-20 mb-16 w-[100vw] relative left-1/2 -translate-x-1/2 px-6 md:px-10 bg-secondary/20 py-12"
-                        : isSessionTitle
+                        : isSessionTitle || hasNoTitle
                         ? "reveal mt-20 mb-8"
                         : "grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal"
                     }
                   >
                     {isSessionTitle ? (
-                      <div className="text-xl md:text-2xl font-bold text-white tracking-tight mb-8 whitespace-nowrap">
+                      <div className={`text-xl md:text-2xl font-bold text-white tracking-tight mb-8 ${section.comparisonVideos || section.comparisonDemos ? "text-center" : "whitespace-nowrap"}`}>
                         {section.title}
                       </div>
-                    ) : (
+                    ) : hasNoTitle ? null : (
                       <div className="font-mono text-sm uppercase tracking-[0.2em] text-accent font-normal pt-1">
                         {section.title}
                       </div>
@@ -196,8 +219,9 @@ function ProjectDetail() {
                       )}
 
                       {section.comparisonDemos && (
-                        <div className="mt-12 mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1800px] mx-auto">
-                          <div className="flex flex-col w-full">
+                        <div className="mt-12 mb-8">
+                          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1800px] mx-auto">
+                            <div className="flex flex-col w-full">
                             <h3 className="text-xl font-medium mb-4 text-center">{section.comparisonDemos.left.title}</h3>
                             <div
                               className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-card"
@@ -228,7 +252,62 @@ function ProjectDetail() {
                             </div>
                           </div>
                         </div>
+                        {section.comparisonDemos.caption && (
+                          <p className="mt-4 text-sm text-muted-foreground text-center italic max-w-3xl mx-auto">
+                            {section.comparisonDemos.caption}
+                          </p>
+                        )}
+                      </div>
                       )}
+                      
+                      {section.comparisonVideos && (
+                        <div className="mt-12 mb-8">
+                          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1800px] mx-auto">
+                            <div className="flex flex-col w-full">
+                              <h3 className="text-xl font-medium mb-4 text-center">{section.comparisonVideos.left.title}</h3>
+                              <div
+                                className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-black"
+                                style={{ aspectRatio: section.comparisonVideos.aspectRatio || "1140 / 541.25" }}
+                              >
+                                <video
+                                  src={resolveAsset(section.comparisonVideos.left.url)}
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  controls
+                                  title={section.comparisonVideos.left.title}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            </div>
+                            <div className="flex flex-col w-full">
+                              <h3 className="text-xl font-medium mb-4 text-center">{section.comparisonVideos.right.title}</h3>
+                              <div
+                                className="w-full rounded border border-border relative overflow-hidden shadow-xl bg-black"
+                                style={{ aspectRatio: section.comparisonVideos.aspectRatio || "1140 / 541.25" }}
+                              >
+                                <video
+                                  src={resolveAsset(section.comparisonVideos.right.url)}
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  controls
+                                  title={section.comparisonVideos.right.title}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          {section.comparisonVideos.caption && (
+                            <p className="mt-4 text-sm text-muted-foreground text-center italic max-w-3xl mx-auto">
+                              {section.comparisonVideos.caption}
+                            </p>
+                          )}
+                        </div>
+                      )}
+
                       {section.video && (
                         <div
                           className={`aspect-video w-full rounded-2xl border border-border relative overflow-hidden shadow-xl bg-black ${!isSessionTitle ? "mt-8" : ""}`}
@@ -239,6 +318,8 @@ function ProjectDetail() {
                             loop
                             muted
                             playsInline
+                            controls
+                            title={section.title || "Section Demo"}
                             className="w-full h-full object-cover"
                           />
                         </div>
