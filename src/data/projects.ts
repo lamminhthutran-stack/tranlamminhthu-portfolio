@@ -29,7 +29,6 @@ export type Project = {
   impact: string;
   tags: string[];
   year?: string;
-  metric: string;
   gradient: string;
   content: string | ProjectContentSection[]; // The content for the project sub-page
   video?: string; // Optional video URL or path
@@ -45,7 +44,6 @@ export const projects: Project[] = [
     impact: "Turning scattered information into a structured decision-support workflow",
     tags: ["Prompt Engineering", "AI Workflow", "Information Filtering", "Summarization"],
     year: "2026",
-    metric: "↓ 3 hrs / week",
     gradient: "linear-gradient(135deg, oklch(0.5 0.2 255), oklch(0.18 0.06 270))",
     content: [
       {
@@ -103,13 +101,80 @@ export const projects: Project[] = [
     video: "/daily_news_vid.mp4",
   },
   {
-    id: "partner-reporting",
+    id: "daily-operations-analysis",
     n: "02",
+    title: "Daily Operations Analysis",
+    impact: "A structured operations pipeline for automated data ingestion and KPI reporting",
+    tags: ["Power Query", "VBA Macros", "Microsoft Excel"],
+    year: "2026",
+    gradient: "linear-gradient(135deg, oklch(0.42 0.16 260), oklch(0.18 0.06 250))",
+    headerDownload: {
+      url: "/Daily%20Operations%20Dashboard.xlsm",
+      label: "Download Excel Dashboard",
+    },
+    content: [
+      {
+        image: "/Daily%20Ops%20Image.png",
+      },
+      {
+        title: "Overview",
+        body: "A daily operations analysis system built in Microsoft Excel using Power Query and VBA Macros to automate data ingestion, transformation, and KPI reporting. Designed as a structured data pipeline, the system enables consistent performance monitoring, reduces manual effort, and supports faster operational decision-making.",
+      },
+      {
+        title: "Context",
+        body: "The organization needed a clearer way to monitor sales performance across products, retailers, and regions. Raw sales data existed but was not decision-ready — scattered across records with no centralized view.",
+      },
+      {
+        title: "Problem",
+        body: "Managers could see individual sales records, but had no structured way to compare revenue, profitability, top-performing products, retailer contribution, and geographic trends in one place. This made it harder to identify what was actually driving performance and where attention was needed.",
+      },
+      {
+        title: "Why it matters",
+        body: "Without a structured performance view, decisions risk becoming reactive or overly dependent on manual checks. The goal was to turn raw sales data into a reusable decision-support system — one that could be filtered, compared, and shared without rebuilding from scratch each time.",
+      },
+      {
+        title: "Decision-making",
+        body: "Before touching any data, I started by defining the key business questions the dashboard needed to answer:\n\n- Which products are driving revenue?\n- Which products are actually profitable?\n- Which retailers contribute the most to overall performance?\n- Which regions show stronger or weaker results?\n\nThis framing shaped every metric and layout decision that followed — ensuring the dashboard was built around real questions, not just available data.",
+      },
+      {
+        title: "Tradeoffs",
+        body: "The main tension was between completeness and readability. It would have been easy to surface every available metric, but an overcrowded dashboard creates noise rather than clarity.\n\nThe decision was to group insights into four focused views — KPI summary, product-level performance, retailer contribution, and geographic trends — each answering a specific question. This kept the dashboard scannable and purposeful rather than exhaustive.\n\nIt's also worth noting what this dashboard is and is not: it's a descriptive snapshot of current performance, designed to support review conversations. It was not built for inferential analysis or predictive modeling — and scoping it that way kept the design honest.",
+      },
+      {
+        title: "System Design",
+        body: "Raw data → cleaned and structured tables → KPI logic defined → dashboard layout planned → pivot tables built → slicers added for dynamic filtering → final dashboard view assembled and tested.",
+      },
+      {
+        title: "Iteration",
+        body: "One key insight during build: revenue alone can be misleading. A high-volume product with thin margins can look like a win until profitability is layered in. To address this, revenue and margin views were kept separate, so users could identify not just what sold — but what actually contributed to the bottom line.",
+      },
+      {
+        title: "Outcome",
+        body: "The dashboard turned scattered sales records into an executive-friendly view that made performance easier to monitor, compare, and explain. Business reviews that previously required manual data pulls could instead start from a single, filterable source of truth.",
+      },
+      {
+        title: "What this demonstrates",
+        body: [
+          "Operations thinking",
+          "Data structuring",
+          "KPI design",
+          "Business analysis",
+          "Ability to turn raw data into a decision-ready system",
+        ],
+      },
+      {
+        title: "Stack",
+        body: "Microsoft Excel, Power Query, VBA Macros",
+      },
+    ],
+  },
+  {
+    id: "partner-reporting",
+    n: "03",
     title: "Partner Reporting System",
     impact: "Standardizing handoffs through workflow mapping and SOP design",
     tags: ["Google Apps Script", "Process Mapping", "SOP Documentation", "Process Improvement"],
     year: "2026",
-    metric: "↓ 4 hrs / week",
     gradient: "linear-gradient(135deg, oklch(0.46 0.18 248), oklch(0.18 0.06 268))",
     content: [
       {
@@ -181,12 +246,11 @@ export const projects: Project[] = [
   },
   {
     id: "project-x-workflow",
-    n: "03",
+    n: "04",
     title: "Partnership Campaign System",
     impact: "Turning manual outreach into a repeatable operating workflow",
     tags: ["n8n", "Campaign Tracking", "Workflow Automation"],
     year: "2025 - 2026",
-    metric: "",
     gradient: "linear-gradient(135deg, oklch(0.45 0.18 240), oklch(0.16 0.05 260))",
     content: [
       {
@@ -246,13 +310,13 @@ export const projects: Project[] = [
   },
   {
     id: "dashboards-data-vis",
-    n: "04",
+    n: "05",
     title: "Sales Performance Dashboard",
     impact: "From raw data to decision-ready insights",
     tags: ["Excel", "Power BI", "Data Analytics", "KPI Tracking"],
     year: "2025",
-    metric: "Faster decisions with live dashboards",
     gradient: "linear-gradient(135deg, oklch(0.4 0.17 270), oklch(0.16 0.05 250))",
+    video: "/vid.mp4",
     content: [
       {
         title: "Interactive Dashboards",

@@ -11,7 +11,7 @@ export function About() {
             <img
               src={`${import.meta.env.BASE_URL}photo.jpg`}
               alt="Profile"
-              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500"
             />
             {/* Gradient overlay so the white text is always readable over the photo */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
@@ -43,17 +43,17 @@ export function About() {
           </h2>
           <div className="grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
             <p>
-              Operations-oriented undergraduate with experience in workflow design, automation, and
-              operational problem solving. Currently studying International Commerce and Applied
-              Information Engineering at <span className="text-accent">Yonsei University</span>,
-              with a strong interest in systems, execution, and continuous improvement.
+              I design workflows that make operations scalable and reliable. When a process breaks,
+              I look for root causes before reaching for a fix — asking whether the problem is worth
+              solving, who it actually affects, and what a solution needs to hold up under real constraints.
             </p>
 
             <p>
-              Known for a strong can-do attitude and ownership beyond scope, I proactively identify
-              opportunities to improve and scale processes. I combine attention to detail with
-              system thinking to turn messy challenges into structured workflows, faster execution,
-              and measurable outcomes.
+              That thinking comes from studying both <span className="text-accent">international commerce</span> and{' '}
+              <span className="text-accent">applied information engineering</span> at Yonsei, where I learned
+              to read business problems and system problems in the same breath. In practice, this means
+              balancing automation with human judgment, keeping quality intact as volume grows, and
+              building things that the next person can actually use and hand off.
             </p>
           </div>
 
@@ -63,23 +63,27 @@ export function About() {
             </div>
             <div className="flex flex-col gap-6">
               <div>
-                <h4 className="text-lg font-medium text-accent">Kindness</h4>
+                <h4 className="text-lg font-medium text-accent">Fix the system, not the person</h4>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Fix the system, not the blame. Encourage and empower people to grow through
-                  mistakes.
+                  When mistakes repeat, I look at the process before looking at the person — asking whether
+                  the workflow actually gave people a fair chance to do quality work. The better fix is
+                  designing conditions where doing the right thing becomes the easier thing.
                 </p>
               </div>
               <div>
-                <h4 className="text-lg font-medium text-accent">Lifelong Learner</h4>
+                <h4 className="text-lg font-medium text-accent">Learning with Humility</h4>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Connect patterns across domains. Every conversation is a resource.
+                  I value judgment, but I also recognize that every judgment has gaps. I treat each project,
+                  conversation, and unexpected challenge as a chance to uncover blind spots, connect patterns,
+                  and improve how I think and work.
                 </p>
               </div>
               <div>
-                <h4 className="text-lg font-medium text-accent">Can-Do Attitude</h4>
+                <h4 className="text-lg font-medium text-accent">Clarity under ambiguity</h4>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Figure it out first, refine later. Ambiguity is a problem to solve, not a reason
-                  to hesitate.
+                  When facing ambiguity, I don't wait for the perfect answer. I break problems down step by
+                  step, act with the best available information, collect feedback, and iterate until the
+                  solution becomes clearer and stronger.
                 </p>
               </div>
             </div>

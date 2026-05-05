@@ -85,10 +85,6 @@ export function Work() {
                     <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-lg leading-relaxed">
                       {p.impact}
                     </p>
-                    <div className="mt-3 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent/90">
-                      <span className="h-px w-5 bg-accent/60" />
-                      {p.metric}
-                    </div>
                   </div>
 
                   {/* Tags */}
@@ -183,9 +179,6 @@ export function Work() {
               <div>
                 <div className="text-white text-base font-medium drop-shadow-lg">
                   {hover !== null && projects[hover].title}
-                </div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80 mt-1 drop-shadow-md">
-                  {hover !== null && projects[hover].metric}
                 </div>
               </div>
               <ArrowUpRight className="h-4 w-4 text-white drop-shadow-md" />
