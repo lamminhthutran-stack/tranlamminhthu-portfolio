@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     id: "ai-daily-newsletter",
     n: "01",
-    title: "Daily News Briefing System",
+    title: "Turning scattered information into a structured decision-support workflow",
     impact: "Saved hours every week with auto-curated market briefings.",
     tags: ["Automation", "Personal Project"],
     year: "2026",
@@ -105,7 +105,7 @@ export const projects: Project[] = [
   {
     id: "partner-reporting",
     n: "02",
-    title: "Partner Reporting System",
+    title: "Standardizing handoffs through workflow mapping and SOP design",
     impact:
       "Built an automated Apps Script workflow that generated partner-facing sheets and reduced repetitive manual reporting work.",
     tags: ["Automation", "Operations", "Apps Script"],
@@ -183,7 +183,7 @@ export const projects: Project[] = [
   {
     id: "project-x-workflow",
     n: "03",
-    title: "Media Partnership Outreach System",
+    title: "Turning manual outreach into a repeatable operating workflow",
     impact: "Automated communication for 700+ applicants across multiple cohorts.",
     tags: ["Automation", "Marketing Campaign", "Communication"],
     year: "2025 - 2026",
@@ -248,7 +248,7 @@ export const projects: Project[] = [
   {
     id: "dashboards-data-vis",
     n: "04",
-    title: "Dashboards for Data Visualization",
+    title: "Turning raw sales data into executive-ready business visibility",
     impact: "Reduced repetitive manual review tasks and lowered platform risk.",
     tags: ["Data Visualization", "Personal Project"],
     year: "2025",
@@ -259,8 +259,8 @@ export const projects: Project[] = [
         title: "Interactive Dashboards",
         isFullWidth: true,
         comparisonVideos: {
-          left: { url: "/vid.mp4", title: "Dashboard 1 — Adidas Sales Performance" },
-          right: { url: "/vid1.mp4", title: "Dashboard 2 — PepsiCo Sales Performance" },
+          left: { url: "/vid.mp4", title: "Adidas Sales Performance (Power BI)" },
+          right: { url: "/vid1.mp4", title: "PepsiCo Sales Performance (Excel)" },
           aspectRatio: "16 / 9"
         }
       },
