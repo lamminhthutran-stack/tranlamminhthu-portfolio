@@ -118,53 +118,51 @@ export const projects: Project[] = [
       },
       {
         title: "Overview",
-        body: "A daily operations analysis system built in Microsoft Excel using Power Query and VBA Macros to automate data ingestion, transformation, and KPI reporting. Designed as a structured data pipeline, the system enables consistent performance monitoring, reduces manual effort, and supports faster operational decision-making.",
+        body: "A daily operations dashboard built in Excel to surface logistics KPIs — on-time rate, delivery delay, and late rate — segmented by region and shipping mode, with automated refresh and threshold-based alerts.",
       },
       {
         title: "Context",
-        body: "The organization needed a clearer way to monitor sales performance across products, retailers, and regions. Raw sales data existed but was not decision-ready — scattered across records with no centralized view.",
+        body: "The logistics operations team managed daily shipment data across 5 global markets spanning multiple shipping modes. At end of day, the team needed to assess delivery performance — but raw shipment data arrived as a CSV dump requiring manual inspection, cross-referencing, and status checking. As volume grew, this end-of-day review became a bottleneck. The team needed a standardized, repeatable way to surface problems fast.",
       },
       {
         title: "Problem",
-        body: "Managers could see individual sales records, but had no structured way to compare revenue, profitability, top-performing products, retailer contribution, and geographic trends in one place. This made it harder to identify what was actually driving performance and where attention was needed.",
+        body: "There was no centralized view of daily shipping KPIs. Operations staff had to open the raw CSV, manually filter by region or shipping mode, and estimate whether on-time rates were acceptable — with no consistent threshold definition. Late delivery risk flags existed in the data but were never aggregated. The team could not quickly answer: which region is underperforming today, and how bad is it?",
       },
       {
-        title: "Why it matters",
-        body: "Without a structured performance view, decisions risk becoming reactive or overly dependent on manual checks. The goal was to turn raw sales data into a reusable decision-support system — one that could be filtered, compared, and shared without rebuilding from scratch each time.",
+        title: "Why it mattered",
+        body: "Without a daily performance view, bottlenecks went undetected until they became complaints or SLA breaches. On-time rate target was 92% — but actual performance was running at 42.7%, with average delivery delays of 1.62 days against a 1.5-day threshold. First Class shipping showed a 95.3% late rate. These were systemic issues that required fast, daily visibility to diagnose and escalate — not weekly retrospectives.",
       },
       {
         title: "Decision-making",
-        body: "Before touching any data, I started by defining the key business questions the dashboard needed to answer:\n\n- Which products are driving revenue?\n- Which products are actually profitable?\n- Which retailers contribute the most to overall performance?\n- Which regions show stronger or weaker results?\n\nThis framing shaped every metric and layout decision that followed — ensuring the dashboard was built around real questions, not just available data.",
+        body: "The core pain was data refresh and aggregation, not visualization complexity. I considered three options: a Python script run manually, a BI tool like Tableau or Power BI, and an Excel-native solution using Power Query and VBA. I chose Excel because it matched the team's existing workflow, required no new tool adoption or IT provisioning, and could be handed off the same day.",
       },
       {
         title: "Tradeoffs",
-        body: "The main tension was between completeness and readability. It would have been easy to surface every available metric, but an overcrowded dashboard creates noise rather than clarity.\n\nThe decision was to group insights into four focused views — KPI summary, product-level performance, retailer contribution, and geographic trends — each answering a specific question. This kept the dashboard scannable and purposeful rather than exhaustive.\n\nIt's also worth noting what this dashboard is and is not: it's a descriptive snapshot of current performance, designed to support review conversations. It was not built for inferential analysis or predictive modeling — and scoping it that way kept the design honest.",
+        body: "Two deliberate tradeoffs shaped the design.\nFirst, Excel over a BI tool — no onboarding cost, works in the team's existing environment. The limitation: not real-time, requires a manual refresh click, and the CSV file path must stay consistent.\nSecond, a config sheet over hardcoded thresholds — thresholds are business decisions, not constants. Separating them from the macro logic means anyone can recalibrate without touching the code.",
       },
       {
-        title: "System Design",
-        body: "Raw data → cleaned and structured tables → KPI logic defined → dashboard layout planned → pivot tables built → slicers added for dynamic filtering → final dashboard view assembled and tested.",
+        title: "System designed",
+        body: "CSV from data team → Power Query import and clean → RAW DATA sheet → Macro: GenerateReport → REPORT sheet with KPIs → Macro: RefreshDashboard → DASHBOARD visual output.\nA CONFIG sheet holds all thresholds — on-time rate, delay gap, late rate — editable without touching formulas. Output: color-coded KPI cards and bar charts segmented by region and shipping mode.",
       },
       {
         title: "Iteration",
-        body: "One key insight during build: revenue alone can be misleading. A high-volume product with thin margins can look like a win until profitability is layered in. To address this, revenue and margin views were kept separate, so users could identify not just what sold — but what actually contributed to the bottom line.",
+        body: "Known breakpoints were documented upfront: if the CSV filename or folder path changes, Power Query connection breaks and must be manually updated. The dashboard reflects a snapshot — it does not auto-update. Data covers historical records, so KPI thresholds need recalibration before use with live operational data. A troubleshooting guide was embedded in the SOP sheet covering macro failures, empty dashboards, and chart issues.",
       },
       {
         title: "Outcome",
-        body: "The dashboard turned scattered sales records into an executive-friendly view that made performance easier to monitor, compare, and explain. Business reviews that previously required manual data pulls could instead start from a single, filterable source of truth.",
+        body: "Daily review time reduced from open-ended manual CSV inspection to a 5-step refresh cycle — rename file, refresh query, click button, review KPIs, investigate red alerts. The dashboard surfaces regional and shipping-mode breakdowns in one view, with threshold-based alerts that make escalation decisions explicit rather than judgment-based. The SOP and troubleshooting documentation enabled handoff without dependency on the original builder.",
       },
       {
         title: "What this demonstrates",
         body: [
-          "Operations thinking",
-          "Data structuring",
-          "KPI design",
-          "Business analysis",
-          "Ability to turn raw data into a decision-ready system",
+          "Operations ownership — end-to-end: identified the pain point, designed the system, documented for sustainability, and anticipated failure modes before they happened.",
+          "System thinking — structured the solution as a pipeline rather than a one-off report.",
+          "Product thinking — chose the tool based on user context and made thresholds configurable because they belong to the business, not the code.",
         ],
       },
       {
         title: "Stack",
-        body: "Microsoft Excel, Power Query, VBA Macros",
+        body: "Microsoft Excel · Power Query · VBA Macros · CSV ingestion pipeline · KPI threshold config · Excel charts",
       },
     ],
   },
