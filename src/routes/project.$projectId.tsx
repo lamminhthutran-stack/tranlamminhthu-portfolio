@@ -61,7 +61,7 @@ function ProjectDetail() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-[-0.03em] font-medium leading-[1.05] mb-8 reveal">
               {project.title}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed reveal">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed reveal">
               {project.impact}
             </p>
 
@@ -129,8 +129,8 @@ function ProjectDetail() {
 
           <div className="w-full text-lg md:text-xl text-muted-foreground leading-relaxed space-y-16 pb-20">
             {typeof project.content === "string" ? (
-              <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-accent font-normal pt-1">
+              <div className="reveal">
+                <div className="font-mono text-sm uppercase tracking-[0.2em] text-accent font-normal mb-4">
                   Overview
                 </div>
                 <div className="space-y-6">
@@ -157,7 +157,7 @@ function ProjectDetail() {
                         ? "reveal mt-20 mb-16 w-[100vw] relative left-1/2 -translate-x-1/2 px-6 md:px-10 bg-secondary/20 py-12"
                         : isSessionTitle || hasNoTitle
                         ? "reveal mt-20 mb-8"
-                        : "grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 md:gap-12 reveal"
+                        : "reveal"
                     }
                   >
                     {isSessionTitle ? (
@@ -165,7 +165,7 @@ function ProjectDetail() {
                         {section.title}
                       </div>
                     ) : hasNoTitle ? null : (
-                      <div className="font-mono text-sm uppercase tracking-[0.2em] text-accent font-normal pt-1">
+                      <div className="font-mono text-sm uppercase tracking-[0.2em] text-accent font-normal mb-4">
                         {section.title}
                       </div>
                     )}
