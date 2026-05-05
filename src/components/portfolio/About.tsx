@@ -64,7 +64,7 @@ export function About() {
             <div className="flex flex-col gap-6">
               <div>
                 <h4 className="text-lg font-medium text-accent">Fix the system, not the person</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
                   When mistakes repeat, I look at the process before looking at the person — asking whether
                   the workflow actually gave people a fair chance to do quality work. The better fix is
                   designing conditions where doing the right thing becomes the easier thing.
@@ -72,7 +72,7 @@ export function About() {
               </div>
               <div>
                 <h4 className="text-lg font-medium text-accent">Learning with Humility</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
                   I value judgment, but I also recognize that every judgment has gaps. I treat each project,
                   conversation, and unexpected challenge as a chance to uncover blind spots, connect patterns,
                   and improve how I think and work.
@@ -80,7 +80,7 @@ export function About() {
               </div>
               <div>
                 <h4 className="text-lg font-medium text-accent">Clarity under ambiguity</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
                   When facing ambiguity, I don't wait for the perfect answer. I break problems down step by
                   step, act with the best available information, collect feedback, and iterate until the
                   solution becomes clearer and stronger.

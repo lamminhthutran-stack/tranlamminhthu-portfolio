@@ -82,7 +82,7 @@ export function Work() {
                     <h3 className="text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] font-medium leading-[1.05] transition-colors duration-300 group-hover:text-accent">
                       {p.title}
                     </h3>
-                    <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-lg leading-relaxed">
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-lg leading-relaxed text-justify">
                       {p.impact}
                     </p>
                   </div>

@@ -314,16 +314,14 @@ export const projects: Project[] = [
     tags: ["Excel", "Power BI", "Data Analytics", "KPI Tracking"],
     year: "2025",
     gradient: "linear-gradient(135deg, oklch(0.4 0.17 270), oklch(0.16 0.05 250))",
-    video: "/vid.mp4",
     content: [
       {
-        title: "Interactive Dashboards",
-        isFullWidth: true,
-        comparisonVideos: {
-          left: { url: "/vid.mp4", title: "Adidas Sales Performance (Power BI)" },
-          right: { url: "/vid1.mp4", title: "PepsiCo Sales Performance (Excel)" },
-          aspectRatio: "16 / 9"
-        }
+        title: "Adidas Sales Performance (Power BI)",
+        video: "/vid.mp4",
+      },
+      {
+        title: "Pepsico Sales Performance (Excel)",
+        video: "/vid1.mp4",
       },
       {
         title: "Overview",

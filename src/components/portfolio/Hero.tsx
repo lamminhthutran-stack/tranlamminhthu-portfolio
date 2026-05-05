@@ -45,7 +45,7 @@ export function Hero() {
         </h1>
 
         <div className="reveal mt-12 grid md:grid-cols-12 gap-8 items-end">
-          <p className="md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl text-justify">
             Ops-minded problem solver with product thinking — turning messy workflows into systems
             that improve speed, clarity, and execution.
           </p>

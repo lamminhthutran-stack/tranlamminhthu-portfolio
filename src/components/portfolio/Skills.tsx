@@ -47,7 +47,7 @@ export function Skills() {
                 <h3 className="text-2xl md:text-3xl tracking-tight font-medium group-hover:text-accent transition-colors">
                   {s.name}
                 </h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed text-justify">{s.desc}</p>
               </div>
             </div>
           ))}

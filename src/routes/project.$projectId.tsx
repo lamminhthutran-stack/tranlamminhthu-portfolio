@@ -134,7 +134,7 @@ function ProjectDetail() {
                   Overview
                 </div>
                 <div className="space-y-6">
-                  <p className="whitespace-pre-wrap">{project.content}</p>
+                  <p className="whitespace-pre-wrap text-justify">{project.content}</p>
                 </div>
               </div>
             ) : (
@@ -143,7 +143,9 @@ function ProjectDetail() {
                   section.title && (
                     section.title.toLowerCase().startsWith("section") ||
                     section.title.toLowerCase().startsWith("dashboard") ||
-                    section.title.toLowerCase().startsWith("workflow")
+                    section.title.toLowerCase().startsWith("workflow") ||
+                    section.title.toLowerCase().startsWith("adidas") ||
+                    section.title.toLowerCase().startsWith("pepsico")
                   );
                 const hasNoTitle = !section.title;
 
@@ -175,7 +177,7 @@ function ProjectDetail() {
                           ))}
                         </ul>
                       ) : section.body ? (
-                        <p className="whitespace-pre-wrap">{section.body}</p>
+                        <p className="whitespace-pre-wrap text-justify">{section.body}</p>
                       ) : null}
 
                       {section.fileDownload && (
