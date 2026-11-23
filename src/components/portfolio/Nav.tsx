@@ -1,54 +1,81 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "@tanstack/react-router";
+
+const sections = [
+  ["top", "HOME"],
+  ["about", "Who I am"],
+  ["why", "Why I build"],
+  ["work", "What I’ve built"],
+  ["thinking", "How I think"],
+  ["contact", "Let’s connect"],
+];
 
 export function Nav() {
-  const [open, setOpen] = useState(false);
-  const links = [
-    { label: "Work", href: "#work" },
-    { label: "Info", href: "#about" },
-  ];
+  const headerRef = useRef<HTMLElement>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const pathname = useLocation({ select: (location) => location.pathname });
+
+  useEffect(() => {
+    const targets = sections
+      .map(([id]) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+    // Case-study pages share the navigation but have no home-page sections.
+    if (!targets.some((element) => element.id === "top")) {
+      setActiveSection(null);
+      return;
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const readingLine = (headerRef.current?.getBoundingClientRect().bottom ?? 0) + 32;
+      let current = targets[0].id;
+      for (const target of targets) {
+        if (target.getBoundingClientRect().top <= readingLine) current = target.id;
+      }
+      // The final section may be too short to reach the reading line.
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        current = targets[targets.length - 1].id;
+      }
+      setActiveSection(current);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    targets.forEach((target) => observer.observe(target));
+    if (headerRef.current) observer.observe(headerRef.current);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [pathname]);
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/40">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-        <a href="#top" className="font-mono text-sm tracking-tight flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-blink" />
-          <span className="text-foreground">Minh Thư (Hailey)</span>
-          <span className="text-muted-foreground hidden sm:inline">— Operations</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-1 text-sm">
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="px-3 py-1.5 rounded text-muted-foreground hover:text-accent transition-colors"
+    <header className="editorial-nav" ref={headerRef}>
+      <nav aria-label="Main navigation">
+        {sections.map(([hash, label]) => {
+          const current = activeSection === hash;
+          const currentProps = { "aria-current": current ? ("location" as const) : undefined };
+          return (
+            <Link
+              key={hash}
+              to="/"
+              hash={hash}
+              data-current={current ? "true" : undefined}
+              activeProps={currentProps}
+              inactiveProps={currentProps}
             >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden font-mono text-xs uppercase tracking-widest text-muted-foreground"
-          aria-label="Toggle menu"
-        >
-          {open ? "Close" : "Menu"}
-        </button>
-      </div>
-      {open && (
-        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-xl">
-          <div className="px-6 py-4 flex flex-col gap-1">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-base text-foreground hover:text-accent transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+              {label}
+            </Link>
+          );
+        })}
+      </nav>
     </header>
   );
 }

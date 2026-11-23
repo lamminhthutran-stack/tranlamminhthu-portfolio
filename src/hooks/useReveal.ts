@@ -5,6 +5,7 @@ export function useReveal() {
   const location = useLocation();
 
   useEffect(() => {
+    let observer: IntersectionObserver | undefined;
     // Wait a brief moment for DOM to be fully rendered
     const timeout = setTimeout(() => {
       const els = document.querySelectorAll<HTMLElement>(".reveal");
@@ -19,9 +20,13 @@ export function useReveal() {
         },
         { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
       );
+      observer = io;
       els.forEach((el) => io.observe(el));
     }, 100);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      observer?.disconnect();
+    };
   }, [location.pathname]);
 }

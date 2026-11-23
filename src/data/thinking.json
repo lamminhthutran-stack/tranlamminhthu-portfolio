@@ -1,0 +1,47 @@
+{
+  "problem": "Make a daily news briefing for the team.",
+  "lenses": [
+    {
+      "title": "Problem first",
+      "question": "Is this the right problem — and whose is it?",
+      "without": "Build a feed that pulls every headline every morning.",
+      "with": "Asked the team what they actually did with news. Real problem: nobody had time to judge what was relevant to their work.",
+      "artifact": "Problem statement",
+      "trailStep": "Reframed: relevance, not volume"
+    },
+    {
+      "title": "User before feature",
+      "question": "What job is the reader really trying to do?",
+      "without": "Long summaries for everyone.",
+      "with": "Readers skim on the way to standup. They need a 2-minute read that tells them if anything needs action today.",
+      "artifact": "User interviews",
+      "trailStep": "Designed for a 2-minute read"
+    },
+    {
+      "title": "First principles",
+      "question": "What actually needs to be true?",
+      "without": "Copy the format of existing newsletters.",
+      "with": "Started from three questions: What happened? Why does it matter? Who is affected? These shaped the filtering and summary structure.",
+      "artifact": "3-question template",
+      "trailStep": "Each item answers 3 questions"
+    },
+    {
+      "title": "Systems thinking",
+      "question": "Where does the process break?",
+      "without": "Fix bad summaries one by one.",
+      "with": "Mapped the pipeline: source → filter → summarize → deliver. Most errors came from the filter step, so I fixed it there once.",
+      "artifact": "Pipeline map",
+      "trailStep": "Fixed errors at the filter step"
+    },
+    {
+      "title": "Trade-offs and outcomes",
+      "question": "What do I cut, and how will I know it worked?",
+      "without": "Ship every feature at once and count clicks.",
+      "with": "Cut personalization from v1. Measured one thing: did readers act on at least one item per week?",
+      "artifact": "Success metric",
+      "trailStep": "v1 scoped, measured by actions taken"
+    }
+  ],
+  "result": "A briefing the team actually reads — and acts on.",
+  "caseStudyHref": "project/ai-daily-newsletter"
+}

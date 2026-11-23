@@ -1,7 +1,7 @@
-import { createRouter, useRouter } from "@tanstack/react-router";
+import { createRouter, useRouter, type ErrorComponentProps } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
-function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function DefaultErrorComponent({ error, reset }: ErrorComponentProps) {
   const router = useRouter();
 
   return (
@@ -27,7 +27,7 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
         <p className="mt-2 text-sm text-muted-foreground">
           An unexpected error occurred. Please try again.
         </p>
-        {import.meta.env.DEV && error.message && (
+        {import.meta.env.DEV && error instanceof Error && error.message && (
           <pre className="mt-4 max-h-40 overflow-auto rounded-md bg-muted p-3 text-left font-mono text-xs text-destructive">
             {error.message}
           </pre>
@@ -59,6 +59,7 @@ export const getRouter = () => {
     routeTree,
     context: {},
     scrollRestoration: true,
+    scrollRestorationBehavior: "instant",
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
     basepath: import.meta.env.BASE_URL || "/",

@@ -1,93 +1,106 @@
+import BookCarousel3D from "@/components/ui/cue-3d-book-carousel-reading-mode";
+
+const chapters = [
+  {
+    id: "introduction",
+    title: "Curious about people. Fascinated by possibilities.",
+    paragraphs: [
+      "I'm someone who enjoys exploring how people think, how businesses work, and how technology shapes the world around us. I'm drawn to complex problems, unfamiliar perspectives, and the possibilities that emerge when different disciplines come together.",
+      "Studying International Commerce and Applied Information Engineering at Yonsei University has given me two lenses through which to understand the world: business and technology. More importantly, it has taught me to look beyond individual disciplines and explore how they intersect.",
+      "I believe meaningful progress begins with curiosity — asking questions, challenging what we take for granted, and staying open to possibilities we haven't discovered yet.",
+    ],
+  },
+  {
+    id: "journey",
+    title: "Persistent in direction. Flexible in path.",
+    paragraphs: [
+      "I see understanding oneself as a long and layered process — shaped by experiences, experiments, and sometimes unexpected turns.",
+      "My journey has taken me across different environments, from marketing and community operations to product management and entrepreneurship. At every stage, I approach new experiences with a hypothesis: something I want to explore, a capability I want to develop, or a question I want to find answers to.",
+      "Not every path is immediately clear, and not every experience leads where I initially expect. But I believe in connecting the dots — trusting that seemingly unrelated experiences can reveal their meaning over time, often in ways I couldn't have anticipated.",
+      "I'm persistent in what I seek, yet flexible in how I get there. I want to remain open to changing perspectives, discovering unexpected paths, and recognizing opportunities beyond what I can currently see.",
+      "For now, I'll keep exploring, questioning, and building — staying hungry and foolish enough to never stop discovering what's possible.",
+    ],
+  },
+  {
+    id: "beyond-work",
+    title: "A life driven by curiosity.",
+    paragraphs: [
+      "Beyond work and technology, I find inspiration in history, books, philosophy, and the stories behind people and ideas.",
+      "I'm fascinated by how civilizations evolve, how ideas shape human behavior, and how decisions made in the past continue to influence the present. Exploring different perspectives and questioning what I encounter are ways I continuously expand how I see the world.",
+      "I believe curiosity shouldn't stop where professional work begins or ends. It's what keeps me learning, questioning, and imagining what could be possible.",
+    ],
+  },
+];
+
+const books = [
+  {
+    title: "Steve Jobs",
+    author: "Walter Isaacson",
+    cover: "steve-jobs.jpg",
+    spineColor: "#FFFFFF",
+  },
+  {
+    title: "Kane and Abel",
+    author: "Jeffrey Archer",
+    cover: "hai-so-phan.webp",
+    spineColor: "#D8C594",
+  },
+  {
+    title: "Elon Musk",
+    author: "Ashlee Vance",
+    cover: "elon-musk.jpg",
+    spineColor: "#151A21",
+    spineTextColor: "#FFFFFF",
+  },
+];
+
 export function About() {
   return (
-    <section id="about" className="relative py-16 md:py-24 border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid md:grid-cols-12 gap-12">
-        <div className="md:col-span-5 reveal">
-          <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-4">
-            ✦ Info
-          </div>
-          <div className="aspect-[4/5] rounded-2xl border border-border relative overflow-hidden bg-black/20 group">
-            {/* Find your photo, put it in the "public" folder, and rename it to "photo.jpg" */}
+    <section id="about" className="about-section chapter">
+      <div className="editorial-container">
+        <header className="narrative-heading">
+          <h2 className="section-title">Who I am</h2>
+          <p>The person behind the work.</p>
+        </header>
+        <div className="identity-grid identity-grid--narrative">
+          <figure className="portrait">
             <img
               src={`${import.meta.env.BASE_URL}photo.jpg`}
-              alt="Profile"
-              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500"
+              alt="Trần Lâm Minh Thư"
+              loading="lazy"
             />
-            {/* Gradient overlay so the white text is always readable over the photo */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
-
-            <div className="absolute inset-0 grain opacity-30 mix-blend-overlay" />
-
-            <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80">
-                ID — 2026
+            <figcaption>
+              TRẦN LÂM MINH THƯ
+              <br />
+              <span>Curious thinker · Builder · Seoul, KR</span>
+            </figcaption>
+          </figure>
+          {chapters.map((chapter) => (
+            <article id={chapter.id} className="nb-panel" key={chapter.id}>
+              <div className="narrative-card-heading">
+                <h3>{chapter.title}</h3>
               </div>
-              <span className="h-2 w-2 rounded-full bg-accent animate-blink shadow-[0_0_8px_var(--accent)]" />
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 z-10">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">
-                Operator · Builder
+              <div className="identity-prose">
+                {chapter.paragraphs.map((paragraph, index) => (
+                  <p
+                    id={chapter.id === "introduction" && index === 1 ? "background" : undefined}
+                    key={paragraph}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               </div>
-              <div className="mt-1 text-2xl font-medium text-white drop-shadow-md">
-                Trần Lâm Minh Thư
-              </div>
-              <div className="text-sm text-white/80 drop-shadow-md">
-                Yonsei · International Commerce · Applied Information Engineering
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="md:col-span-7 reveal md:pt-8">
-          <h2 className="text-3xl md:text-5xl tracking-[-0.03em] font-medium mb-8 text-foreground">
-            About Me
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
-            <p>
-              I design workflows that make operations scalable and reliable. When a process breaks,
-              I look for root causes before reaching for a fix — asking whether the problem is worth
-              solving, who it actually affects, and what a solution needs to hold up under real constraints.
-            </p>
-
-            <p>
-              That thinking comes from studying both <span className="text-accent">international commerce</span> and{' '}
-              <span className="text-accent">applied information engineering</span> at Yonsei, where I learned
-              to read business problems and system problems in the same breath. In practice, this means
-              balancing automation with human judgment, keeping quality intact as volume grows, and
-              building things that the next person can actually use and hand off.
-            </p>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-border">
-            <div className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-6">
-              ✦ Core Values
-            </div>
-            <div className="flex flex-col gap-6">
-              <div>
-                <h4 className="text-lg font-medium text-accent">Fix the system, not the person</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
-                  When mistakes repeat, I look at the process before looking at the person — asking whether
-                  the workflow actually gave people a fair chance to do quality work. The better fix is
-                  designing conditions where doing the right thing becomes the easier thing.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-lg font-medium text-accent">Learning with Humility</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
-                  I value judgment, but I also recognize that every judgment has gaps. I treat each project,
-                  conversation, and unexpected challenge as a chance to uncover blind spots, connect patterns,
-                  and improve how I think and work.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-lg font-medium text-accent">Clarity under ambiguity</h4>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed text-justify">
-                  When facing ambiguity, I don't wait for the perfect answer. I break problems down step by
-                  step, act with the best available information, collect feedback, and iterate until the
-                  solution becomes clearer and stronger.
-                </p>
-              </div>
-            </div>
-          </div>
+              {chapter.id === "beyond-work" && (
+                <div id="ideas" className="personal-books">
+                  <h4>A Shelf of Influences</h4>
+                  <p className="cue-intro">
+                    Books that shaped how I see people, ideas, and possibilities.
+                  </p>
+                  <BookCarousel3D books={books} />
+                </div>
+              )}
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -1,0 +1,340 @@
+.wib {
+  --wib-paper: #fffcf2;
+  --wib-yellow: #f5c842;
+  --wib-sticky: #ffe58a;
+  --wib-red: #e24b4a;
+  --wib-orange: #d85a30;
+  --wib-ink: #111;
+  color: var(--wib-ink);
+}
+.wib__header {
+  margin-bottom: 36px;
+}
+.wib__sub {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.wib__hand,
+.wib-replace {
+  font-family: "Permanent Marker", sans-serif;
+}
+.wib__hand {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 20px;
+}
+.wib__list {
+  display: grid;
+  gap: 32px;
+}
+.wib-card {
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 var(--wib-ink);
+  background: white;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.wib-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 0 var(--wib-ink);
+}
+.wib-card__panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0fr) minmax(0, 0fr);
+  perspective: 1400px;
+  transition: grid-template-columns 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.wib-card.is-open .wib-card__panels {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+.wib-panel {
+  min-width: 0;
+  overflow: hidden;
+}
+.wib-panel__inner {
+  padding: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+.wib-panel--origin,
+.wib-panel--proof {
+  visibility: hidden;
+  opacity: 0;
+  transform: rotateY(-75deg);
+  transform-origin: left;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s,
+    visibility 0.55s;
+}
+.wib-panel--origin {
+  background: var(--wib-sticky);
+}
+.wib-panel--proof {
+  background: var(--wib-ink);
+  color: var(--wib-paper);
+}
+.wib-card.is-open .wib-panel--origin,
+.wib-card.is-open .wib-panel--proof {
+  visibility: visible;
+  opacity: 1;
+  transform: rotateY(0);
+  border-left: 3px solid #000;
+}
+.wib-card.is-open .wib-panel--origin {
+  transition-delay: 0.08s;
+}
+.wib-card.is-open .wib-panel--proof {
+  transition-delay: 0.3s;
+}
+.wib-card:not(.is-open) .wib-panel--origin .wib-panel__inner,
+.wib-card:not(.is-open) .wib-panel--proof .wib-panel__inner {
+  height: 0;
+  padding-block: 0;
+  overflow: hidden;
+}
+.wib-card.is-open .wib-mark {
+  white-space: normal;
+}
+.wib-panel-title {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 800;
+  margin: 0;
+}
+.wib-hole {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  background: var(--wib-paper);
+  flex: none;
+}
+.wib-label {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.wib-headline {
+  font-size: clamp(21px, 2.8vw, 36px);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  font-weight: 900;
+  margin: 0;
+  max-width: 100%;
+}
+.wib-headline--edited {
+  line-height: 1.4;
+  padding-top: 0.25em;
+}
+.wib-edit {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  margin-inline: 0.08em;
+  margin-top: 0.35em;
+  line-height: 1.1;
+}
+.wib-edit del {
+  position: relative;
+  color: #8a8780;
+  text-decoration: none;
+}
+/* The base correction stays visible throughout. Only the second ink pass animates. */
+.wib-edit del::before,
+.wib-edit del::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 50%;
+  height: 0.075em;
+  border-radius: 3px;
+  background: #e24b4a;
+  transform: rotate(-4deg);
+  transform-origin: left;
+}
+.wib-edit ins {
+  position: absolute;
+  left: 50%;
+  bottom: 78%;
+  translate: -50% 0;
+  rotate: -3deg;
+  font-family: "Caveat", sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  color: #d85a30;
+  text-decoration: none;
+  opacity: 1;
+}
+.wib-caret {
+  display: none;
+}
+.wib-mark {
+  color: inherit;
+  background: var(--wib-yellow);
+  padding: 0.04em 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  white-space: nowrap;
+}
+.wib-card[data-edit-animate="true"] .wib-edit del::after {
+  animation: wib-ink 0.35s ease-out both;
+}
+.wib-card[data-edit-animate="true"] .wib-edit del {
+  animation: wib-muted 0.3s 0.3s both;
+}
+.wib-card[data-edit-animate="true"] .wib-caret {
+  animation: wib-caret 0.25s 0.45s both;
+}
+.wib-card[data-edit-animate="true"] .wib-edit ins {
+  animation: wib-replacement 0.45s 0.55s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+@keyframes wib-ink {
+  from {
+    transform: rotate(-4deg) scaleX(0);
+  }
+  to {
+    transform: rotate(-4deg) scaleX(1);
+  }
+}
+@keyframes wib-muted {
+  from {
+    color: #74716c;
+  }
+  to {
+    color: #8a8780;
+  }
+}
+@keyframes wib-caret {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes wib-replacement {
+  from {
+    opacity: 0.85;
+    translate: -50% 6px;
+  }
+  to {
+    opacity: 1;
+    translate: -50% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wib-card *,
+  .wib-card *::before,
+  .wib-card *::after {
+    animation: none !important;
+  }
+}
+.wib-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wib-mark {
+    animation: none !important;
+  }
+}
+.wib-body {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+.wib-toggle,
+.wib-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  background: white;
+  color: #000;
+  margin-top: 8px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.wib-toggle:focus-visible,
+.wib-chip:focus-visible {
+  outline: 3px solid #74b9ff;
+  outline-offset: 5px;
+}
+@media (max-width: 767px) {
+  .wib-card__panels,
+  .wib-card.is-open .wib-card__panels {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr 0fr 0fr;
+    transition: grid-template-rows 0.6s;
+  }
+  .wib-card.is-open .wib-card__panels {
+    grid-template-rows: auto 1fr 1fr;
+  }
+  .wib-panel {
+    min-height: 0;
+  }
+  .wib-panel__inner {
+    padding: 24px 20px;
+    gap: 18px;
+  }
+  .wib-panel--origin,
+  .wib-panel--proof {
+    transform: rotateX(-75deg);
+    transform-origin: top;
+  }
+  .wib-card.is-open .wib-panel--origin,
+  .wib-card.is-open .wib-panel--proof {
+    transform: none;
+    border-left: 0;
+    border-top: 3px solid #000;
+  }
+}
+@media (max-width: 359px) {
+  .wib-mark {
+    white-space: normal;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wib *,
+  .wib *::before,
+  .wib *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .wib-edit del::after {
+    display: none;
+  }
+}
+
+/* Individual words glide between line positions while the original panels unfold. */
+.wib-headline {
+  position: relative;
+}
+.wib-word {
+  display: inline-block;
+}
