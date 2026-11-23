@@ -7,5 +7,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [thinkingFallback(), TanStackRouterVite(), react(), tailwindcss(), tsconfigPaths()],
-  base: "/tranlamminhthu-portfolio/",
+  base: process.env.VERCEL ? "/" : "/tranlamminhthu-portfolio/",
 });
